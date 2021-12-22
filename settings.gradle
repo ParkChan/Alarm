@@ -1,5 +1,6 @@
 rootProject.name = "Alarm"
 include ':common:ui'
+include ':common:room'
 include ':feature:alarmlist'
 include ':feature:settings'
 include ':app'
