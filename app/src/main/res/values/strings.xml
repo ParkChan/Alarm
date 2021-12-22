@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Alarm</string>
+    <string name="title_alarm_list">알람리스트</string>
+    <string name="title_settings">설정</string>
+</resources>

@@ -1,0 +1,26 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath ProjectConfig.gradle
+        classpath ProjectConfig.kotlinGradlePlugin
+        classpath ProjectConfig.androidJunit5
+        classpath ProjectConfig.hiltAndroidGradlePlugin
+        classpath ProjectConfig.gradleVersionPlugin
+        classpath ProjectConfig.navigationSafeArgsGradlePlugin
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

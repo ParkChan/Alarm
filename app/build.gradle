@@ -1,0 +1,74 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'de.mannodermaus.android-junit5'
+    id 'dagger.hilt.android.plugin'
+    id 'com.github.ben-manes.versions'
+}
+
+android {
+    compileSdk AndroidConfig.compileSdk
+
+    defaultConfig {
+        applicationId "com.chan.alarm"
+        minSdk AndroidConfig.minSdk
+        targetSdk AndroidConfig.targetSdk
+        versionCode AndroidConfig.versionCode
+        versionName AndroidConfig.versionName
+
+        testInstrumentationRunner AndroidConfig.androidJunitRunner
+        testInstrumentationRunnerArgument AndroidConfig.runnerBuilder, AndroidConfig.androidJunit5Builder
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        dataBinding true
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+
+    implementation project(":common:ui")
+    implementation project(':feature:settings')
+    implementation project(':feature:alarmlist')
+
+    implementation AndroidXConfig.coreKtx
+    implementation AndroidXConfig.appcompat
+    implementation AndroidXConfig.constraintLayout
+    implementation AndroidXConfig.navigationFragmentKtx
+    implementation AndroidXConfig.navigationUiKtx
+    implementation GoogleConfig.material
+
+    implementation TestConfig.junitJupiterApi
+    implementation TestConfig.junitJupiterEngine
+    androidTestImplementation TestConfig.androidTestCore
+    androidTestRuntimeOnly TestConfig.androidTestRunner
+
+    implementation DaggerHiltConfig.android
+    kapt DaggerHiltConfig.compiler
+
+    implementation AndroidXConfig.roomKtx
+    kapt AndroidXConfig.roomCompiler
+    androidTestImplementation TestConfig.roomTesting
+    testImplementation TestConfig.roomTesting
+
+    implementation LogConfig.timber
+}
+
+

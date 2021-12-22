@@ -1,0 +1,5 @@
+rootProject.name = "Alarm"
+include ':common:ui'
+include ':feature:alarmlist'
+include ':feature:settings'
+include ':app'

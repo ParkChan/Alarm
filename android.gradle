@@ -1,0 +1,48 @@
+android {
+    compileSdk AndroidConfig.compileSdk
+
+    defaultConfig {
+        minSdk AndroidConfig.minSdk
+        targetSdk AndroidConfig.targetSdk
+
+        testInstrumentationRunner AndroidConfig.androidJunitRunner
+        testInstrumentationRunnerArgument AndroidConfig.runnerBuilder, AndroidConfig.androidJunit5Builder
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    implementation AndroidXConfig.appcompat
+    implementation AndroidXConfig.constraintLayout
+    implementation GoogleConfig.material
+    implementation AndroidXConfig.coreKtx
+
+    implementation AndroidXConfig.activityKtx
+    implementation AndroidXConfig.fragmentKtx
+
+    implementation CoroutineConfig.core
+
+    testImplementation TestConfig.junitJupiterApi
+    testRuntimeOnly TestConfig.junitJupiterEngine
+    testImplementation TestConfig.assertjCore
+    testImplementation TestConfig.mockk
+
+    androidTestImplementation TestConfig.junitJupiterApi
+    androidTestImplementation TestConfig.assertjCore
+    androidTestImplementation TestConfig.androidTestCore
+    androidTestRuntimeOnly TestConfig.androidTestRunner
+}
