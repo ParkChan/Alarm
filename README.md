@@ -1,8 +1,8 @@
-##알람앱 만들기
+## 알람앱 만들기
 
 사고의 흐름 #1,#2,#3
 
-###1.기능 구현시 사전 체크 사항
+### 1.기능 구현시 사전 체크 사항
 
 - 싱글 액티비티 모듈 기반 + 네비게이션 컴포넌트 + feature 모듈
     - [DeepLink 로 구성하여 화면 이동 및 데이터 전달]((https://developer.android.com/guide/navigation/navigation-multi-module))
@@ -28,13 +28,13 @@
     - [대상 간 데이터 전달](https://developer.android.com/guide/navigation/navigation-pass-data)
 
 
-###2.Alarm Table 컬럼 정의
+### 2.Alarm Table 컬럼 정의
 - 알람이름,
 - 알람시간,
 - 알람설정여부,
 - 링톤 Uri
 
-###3.기능구현 순서 작성
+### 3.기능구현 순서 작성
 - 아키텍처 설계
     - AppModule(Activity)
         - Navigation 을 사용하여 싱글액티비티로 구성
@@ -55,11 +55,11 @@
 - [리마인드 알림] UI 구현
 
 
-###기타
+### 기타
 - (이미지 사용)[https://romannurik.github.io/AndroidAssetStudio/index.html]
 
 
-###구글링 검색찬스!! 도움이 된 자료
+### 구글링 검색찬스!! 도움이 된 자료
 - https://jamssoft.tistory.com/31
   https://jamssoft.tistory.com/29
   https://jamssoft.tistory.com/30?category=561811
@@ -72,7 +72,7 @@ https://oozou.com/blog/an-easy-way-to-use-deep-link-in-navigation-component-on-a
 
 ---
 
-##[다중 모듈 프로젝트를 위한 탐색](https://developer.android.com/guide/navigation/navigation-multi-module)
+## [다중 모듈 프로젝트를 위한 탐색](https://developer.android.com/guide/navigation/navigation-multi-module)
 
 - 네비게이션 가이드
   https://developer.android.com/guide/navigation/navigation-getting-started
