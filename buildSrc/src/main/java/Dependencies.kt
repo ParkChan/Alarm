@@ -12,6 +12,7 @@ object Version {
     const val constraintLayout = "2.1.2"
     const val recyclerView = "1.2.1"
     const val room = "2.3.0"
+    const val testCore = "1.3.0"
     const val navigation = "2.3.5"
 
     const val coroutine = "1.5.2"
@@ -80,6 +81,7 @@ object TestConfig {
     const val espresso = "androidx.test.espresso:espresso-core:${Version.espresso}"
 
     const val roomTesting = "androidx.room:room-testing:${Version.room}"
+    const val testCore = "androidx.test:core:${Version.testCore}"
 }
 
 object AndroidXConfig {

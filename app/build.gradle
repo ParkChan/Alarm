@@ -65,8 +65,6 @@ dependencies {
 
     implementation AndroidXConfig.roomKtx
     kapt AndroidXConfig.roomCompiler
-    androidTestImplementation TestConfig.roomTesting
-    testImplementation TestConfig.roomTesting
 
     implementation LogConfig.timber
 }

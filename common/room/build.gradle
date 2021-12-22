@@ -17,6 +17,6 @@ dependencies {
     kapt AndroidXConfig.roomCompiler
     androidTestImplementation TestConfig.roomTesting
     testImplementation TestConfig.roomTesting
-
+    implementation TestConfig.testCore
 
 }
