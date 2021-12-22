@@ -4,7 +4,7 @@
 
 ### 1.기능 구현시 사전 체크 사항
 
-- 싱글 액티비티 모듈 기반 + 네비게이션 컴포넌트 + feature 모듈
+- 싱글 액티비티 + 네비게이션 컴포넌트 + feature 모듈
     - [DeepLink 로 구성하여 화면 이동 및 데이터 전달]((https://developer.android.com/guide/navigation/navigation-multi-module))
 
 - Navigation action
