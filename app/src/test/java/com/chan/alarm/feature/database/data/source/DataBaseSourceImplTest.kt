@@ -1,9 +1,7 @@
-package com.chan.alarm.feature.database
+package com.chan.alarm.feature.database.data.source
 
 import com.chan.alarm.feature.database.data.AlarmDao
 import com.chan.alarm.feature.database.data.AlarmTable
-import com.chan.alarm.feature.database.data.source.DataBaseSource
-import com.chan.alarm.feature.database.data.source.DataBaseSourceImpl
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
@@ -22,12 +20,12 @@ class DataBaseSourceImplTest {
 
     @Test
     fun `알람정보를 저장 합니다`() = runBlocking {
-        val timeStamp = System.currentTimeMillis()
         val alarmTable = AlarmTable(
-            alarmName = "회의",
-            timeStamp = timeStamp,
-            isAlarm = false,
-            ringtoneUri = ""
+            ID,
+            alarmName = ALARM_NAME,
+            timeStamp = TIME_STAMP,
+            isAlarm = IS_ALARM,
+            ringtoneUri = RINGTONE_URI
         )
         dataBaseSource.insert(alarmTable)
 
@@ -42,5 +40,12 @@ class DataBaseSourceImplTest {
         coVerify {
             alarmDao.select()
         }
+    }
+    companion object {
+        private const val ID = 1
+        private const val ALARM_NAME = "미팅"
+        private const val IS_ALARM = true
+        private const val TIME_STAMP = 0L
+        private const val RINGTONE_URI = ""
     }
 }

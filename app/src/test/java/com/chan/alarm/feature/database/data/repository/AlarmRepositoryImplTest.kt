@@ -1,24 +1,26 @@
-package com.chan.alarm.feature.database
+package com.chan.alarm.feature.database.data.repository
 
 import com.chan.alarm.feature.database.data.AlarmTable
-import com.chan.alarm.feature.database.data.repository.AlarmRepositoryImpl
 import com.chan.alarm.feature.database.data.source.DataBaseSource
 import com.chan.alarm.feature.database.data.source.DataBaseSourceImpl
 import com.chan.alarm.feature.database.domain.repository.AlarmRepository
+import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+
 
 class AlarmRepositoryImplTest {
 
     private val dataBaseSource: DataBaseSource = mockk(relaxed = true)
-    private lateinit var alarmRepository: AlarmRepository
+    private lateinit var alarmRepositoryImpl: AlarmRepositoryImpl
 
     @BeforeEach
     fun setup() {
-        alarmRepository = AlarmRepositoryImpl(dataBaseSource)
+        alarmRepositoryImpl = AlarmRepositoryImpl(dataBaseSource)
     }
 
     @Test
@@ -31,7 +33,8 @@ class AlarmRepositoryImplTest {
             IS_ALARM,
             RINGTONE_URI
         )
-        alarmRepository.insert(mockAlarmTable.mapToDomain())
+
+        alarmRepositoryImpl.insert(mockAlarmTable.mapToDomain())
 
         coVerify {
             dataBaseSource.insert(mockAlarmTable)
@@ -41,11 +44,16 @@ class AlarmRepositoryImplTest {
     @Test
     fun `Repository 를 사용하여 select 를 수행하는 동작 테스트`() = runBlocking {
 
-        alarmRepository.select()
+        val mockResponse: List<AlarmTable> = emptyList()
 
-        coVerify {
+        coEvery {
             dataBaseSource.select()
-        }
+        } returns mockResponse
+
+        val result = alarmRepositoryImpl.select()
+
+        assertEquals(mockResponse, result)
+
     }
 
     companion object {
@@ -54,6 +62,5 @@ class AlarmRepositoryImplTest {
         private const val IS_ALARM = true
         private const val TIME_STAMP = 0L
         private const val RINGTONE_URI = ""
-
     }
 }

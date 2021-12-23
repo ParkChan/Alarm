@@ -13,18 +13,17 @@ class AlarmRepositoryImpl @Inject constructor(
         dataBaseSource.insert(mapToAlarmTable(alarm))
     }
 
-    override suspend fun select(): List<Alarm> = dataBaseSource.select().map {
-        it.mapToDomain()
-    }
+    override suspend fun select(): List<Alarm> =
+        dataBaseSource.select().map(AlarmTable::mapToDomain)
 
     companion object {
-        private fun mapToAlarmTable(alram: Alarm) =
+        private fun mapToAlarmTable(alarm: Alarm) =
             AlarmTable(
-                id = alram.id,
-                alarmName = alram.alarmName,
-                timeStamp = alram.timeStamp,
-                isAlarm = alram.isAlarm,
-                ringtoneUri = alram.ringtoneUri
+                id = alarm.id,
+                alarmName = alarm.alarmName,
+                timeStamp = alarm.timeStamp,
+                isAlarm = alarm.isAlarm,
+                ringtoneUri = alarm.ringtoneUri
             )
 
     }
