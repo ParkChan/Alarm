@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Alarm</string>
     <string name="title_alarm_list">리마인드</string>
-    <string name="title_settings">리마인드 설정</string>
+    <string name="title_remind_settings">리마인드 설정</string>
 
     <string name="add_reminder">리마인더 추가</string>
 

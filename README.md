@@ -57,7 +57,7 @@
 
 
 ### 기타
-- (이미지 사용)[https://romannurik.github.io/AndroidAssetStudio/index.html]
+- (이미지 사용)[https://fonts.google.com/icons?selected=Material+Icons]
 
 
 ### 구글링 검색찬스!! 도움이 된 자료

@@ -5,6 +5,7 @@ plugins {
     id 'de.mannodermaus.android-junit5'
     id 'dagger.hilt.android.plugin'
     id 'com.github.ben-manes.versions'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -51,6 +52,7 @@ dependencies {
     implementation AndroidXConfig.constraintLayout
     implementation AndroidXConfig.navigationFragmentKtx
     implementation AndroidXConfig.navigationUiKtx
+    androidTestImplementation AndroidXConfig.navigationTesting
     implementation GoogleConfig.material
 
     testImplementation TestConfig.junitJupiterApi

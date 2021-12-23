@@ -6,11 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chan.alarm.feature.database.domain.data.Alarm
 import com.chan.alarm.feature.database.domain.usecase.AlarmDataBaseUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
+@HiltViewModel
 class AlarmViewModel @Inject constructor(
     private val alarmDataBaseUseCase: AlarmDataBaseUseCase
 ) : ViewModel() {

@@ -15,11 +15,11 @@ object Version {
     const val testCore = "1.3.0"
     const val navigation = "2.3.5"
 
-    const val coroutine = "1.5.2"
+    const val coroutine = "1.6.0"
 
     const val jupiter = "5.8.2"
     const val assertjCore = "3.21.0"
-    const val mockk = "1.10.6"
+    const val mockk = "1.12.1"
     const val turbine = "0.7.0"
     const val junit = "4.13.2"
     const val extJunit = "1.1.3"
@@ -104,6 +104,7 @@ object AndroidXConfig {
     const val navigationFragmentKtx =
         "androidx.navigation:navigation-fragment-ktx:${Version.navigation}"
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Version.navigation}"
+    const val navigationTesting = "androidx.navigation:navigation-testing:${Version.navigation}"
 
 }
 

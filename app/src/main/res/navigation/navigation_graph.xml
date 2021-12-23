@@ -18,8 +18,8 @@
     <fragment
         android:id="@+id/fragment_settings"
         android:name="com.chan.alarm.feature.settings.SettingFragment"
-        android:label="@string/title_settings"
-        tools:layout="@layout/fragment_alarm_list">
+        android:label="@string/title_remind_settings"
+        tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settings_fragment_to_alarm_list_fragment_graph"
             app:destination="@id/fragment_alarm_list" />

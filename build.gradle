@@ -11,7 +11,6 @@ buildscript {
         classpath ProjectConfig.hiltAndroidGradlePlugin
         classpath ProjectConfig.gradleVersionPlugin
         classpath ProjectConfig.navigationSafeArgsGradlePlugin
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0'
     }
 }
 
