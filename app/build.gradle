@@ -53,6 +53,11 @@ dependencies {
     implementation AndroidXConfig.navigationUiKtx
     implementation GoogleConfig.material
 
+    testImplementation TestConfig.junitJupiterApi
+    testRuntimeOnly TestConfig.junitJupiterEngine
+    testImplementation TestConfig.assertjCore
+    testImplementation TestConfig.mockk
+
     androidTestImplementation TestConfig.testRunner
     androidTestImplementation TestConfig.junitJupiterApi
     androidTestImplementation TestConfig.assertjCore
