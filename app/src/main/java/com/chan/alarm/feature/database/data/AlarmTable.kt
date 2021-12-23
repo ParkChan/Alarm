@@ -2,6 +2,7 @@ package com.chan.alarm.feature.database.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.chan.alarm.feature.database.domain.data.Alarm
 
 @Entity(tableName = "alarm")
 data class AlarmTable(
@@ -11,4 +12,13 @@ data class AlarmTable(
     val timeStamp: Long,
     val isAlarm: Boolean,
     val ringtoneUri: String
-)
+) : MapToDomain<Alarm> {
+    override fun mapToDomain(): Alarm =
+        Alarm(
+            id = id,
+            alarmName = alarmName,
+            timeStamp = timeStamp,
+            isAlarm = isAlarm,
+            ringtoneUri = ringtoneUri
+        )
+}
