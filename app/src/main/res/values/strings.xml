@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Alarm</string>
-    <string name="title_alarm_list">알람리스트</string>
-    <string name="title_settings">설정</string>
+    <string name="title_alarm_list">리마인드</string>
+    <string name="title_settings">리마인드 설정</string>
+
+    <string name="add_reminder">리마인더 추가</string>
+
+    <string name="remind_name">리마인드 이름</string>
+    <string name="time_setting">시간 설정</string>
+    <string name="ringtone">벨소리</string>
+    <string name="save">save</string>
+    <string name="dismiss">dismiss</string>
 </resources>
