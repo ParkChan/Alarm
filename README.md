@@ -4,7 +4,7 @@
 
 ### 1.기능 구현시 사전 체크 사항
 
-- 싱글 액티비티 + 네비게이션 컴포넌트 + feature 모듈
+- 싱글 액티비티 + 네비게이션 컴포넌트
     - [DeepLink 로 구성하여 화면 이동 및 데이터 전달]((https://developer.android.com/guide/navigation/navigation-multi-module))
 
 - Navigation action
@@ -37,20 +37,21 @@
 ### 3.기능구현 순서 작성
 - 아키텍처 설계
     - AppModule(Activity)
-        - Navigation 을 사용하여 싱글액티비티로 구성
-    - SubModule(Fragment)...
-        - Fragment를 가지는 하위 모듈 구성
+        - common
+        - feature
+            - alarmlist
+            - settings
+        
     - CommonModule
         - UI 구현시 재사용이 많은 BaseActivity, BaseFragment, ListAdapter, ViewHolder
-        - RoomModule
-
+    
 
 - Data 정의
 - DataTable 구현 및 테스트 코드
     - Room 의 In Memory Database를 생성하여 UnitTest
 - UseCase 작성
-- Viewmodel 기능 구현 및 테스트 코드 작성하기
-- [리마인드 메인화면][리마인드 설정] UI 구현
+- Viewmodel 기능 구현 및 테스트 코드 작성
+- UI 구현
 - 알람매니저 기능 테스트
 - [리마인드 알림] UI 구현
 
@@ -72,11 +73,8 @@ https://oozou.com/blog/an-easy-way-to-use-deep-link-in-navigation-component-on-a
 
 ---
 
-## [다중 모듈 프로젝트를 위한 탐색](https://developer.android.com/guide/navigation/navigation-multi-module)
-
 - 네비게이션 가이드
   https://developer.android.com/guide/navigation/navigation-getting-started
-
 
 대상 간 이동을 위해 Safe Args Gradle 플러그인을 사용하는 것이 좋습니다.
 이 플러그인은 대상 간 유형 안전 탐색 및 인수 전달을 사용 설정하는 간단한 객체 및 빌더 클래스를 생성합니다.

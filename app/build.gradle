@@ -45,8 +45,6 @@ android {
 dependencies {
 
     implementation project(":common:ui")
-    implementation project(':feature:settings')
-    implementation project(':feature:alarmlist')
 
     implementation AndroidXConfig.coreKtx
     implementation AndroidXConfig.appcompat
@@ -55,8 +53,9 @@ dependencies {
     implementation AndroidXConfig.navigationUiKtx
     implementation GoogleConfig.material
 
-    implementation TestConfig.junitJupiterApi
-    implementation TestConfig.junitJupiterEngine
+    androidTestImplementation TestConfig.testRunner
+    androidTestImplementation TestConfig.junitJupiterApi
+    androidTestImplementation TestConfig.assertjCore
     androidTestImplementation TestConfig.androidTestCore
     androidTestRuntimeOnly TestConfig.androidTestRunner
 
@@ -65,6 +64,10 @@ dependencies {
 
     implementation AndroidXConfig.roomKtx
     kapt AndroidXConfig.roomCompiler
+    androidTestImplementation TestConfig.roomTesting
+    testImplementation TestConfig.roomTesting
+    implementation TestConfig.testCore
+    implementation TestConfig.mockk
 
     implementation LogConfig.timber
 }

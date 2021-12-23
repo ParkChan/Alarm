@@ -1,6 +1,0 @@
-apply from: "../../android.gradle"
-
-dependencies {
-    implementation project(":common:ui")
-    implementation LogConfig.timber
-}

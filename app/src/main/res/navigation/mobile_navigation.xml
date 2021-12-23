@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_alarm_list"
-        android:name="com.chan.alarmlist.AlarmListFragment"
+        android:name="com.chan.alarm.feature.alarmlist.AlarmListFragment"
         android:label="@string/title_alarm_list"
         tools:layout="@layout/fragment_alarm_list">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/fragment_settings"
-        android:name="com.chan.setting.SettingFragment"
+        android:name="com.chan.alarm.feature.settings.SettingFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_alarm_list">
         <action
