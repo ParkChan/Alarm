@@ -37,5 +37,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
             tools:ignore="NotSibling" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_alarm"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginEnd="@dimen/common_margin"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_add_reminder"
+            tools:listitem="@layout/rv_alarm_item" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

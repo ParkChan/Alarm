@@ -4,27 +4,56 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import com.chan.alarm.R
 import com.chan.alarm.common.ui.AlarmViewModel
 import com.chan.alarm.databinding.FragmentAlarmListBinding
-import com.chan.alarm.feature.settings.SettingFragmentDirections
+import com.chan.alarm.feature.database.domain.data.Alarm
+import com.chan.ui.BR
 import com.chan.ui.BaseFragment
+import com.chan.ui.adapter.BaseListAdapter
+import timber.log.Timber
 
 class AlarmListFragment : BaseFragment<FragmentAlarmListBinding>(
     FragmentAlarmListBinding::inflate
 ) {
 
     private val alarmViewModel by activityViewModels<AlarmViewModel>()
+    private val listAdapter: BaseListAdapter<Alarm> by lazy {
+        BaseListAdapter(
+            layoutResourceId = R.layout.rv_alarm_item,
+            viewHolderBindingId = BR.alarm,
+            viewModel = mapOf(BR.alarmViewModel to alarmViewModel),
+            object : DiffUtil.ItemCallback<Alarm>() {
+                override fun areItemsTheSame(
+                    oldItem: Alarm,
+                    newItem: Alarm
+                ): Boolean =
+                    oldItem.id == newItem.id
+
+                override fun areContentsTheSame(
+                    oldItem: Alarm, newItem: Alarm
+                ): Boolean = oldItem == newItem
+            }
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initTitle()
+        initRecyclerView()
         initViewModel()
         initListener()
+        initViewModelObserve()
+        getAlarms()
     }
 
     private fun initTitle() {
         binding.includeTitle.tvTitle.text = getString(R.string.title_alarm_list)
+    }
+
+    private fun initRecyclerView() {
+        binding.rvAlarm.adapter = listAdapter
     }
 
     private fun initViewModel() {
@@ -33,9 +62,21 @@ class AlarmListFragment : BaseFragment<FragmentAlarmListBinding>(
 
     private fun initListener() {
         binding.btnAddReminder.setOnClickListener {
-            val action = AlarmListFragmentDirections.actionAlarmListFragmentToSettingsFragmentGraph()
+            val action =
+                AlarmListFragmentDirections.actionAlarmListFragmentToSettingsFragmentGraph()
             it.findNavController().navigate(action)
         }
+    }
+
+    private fun initViewModelObserve() {
+        alarmViewModel.alarms.observe(viewLifecycleOwner, {
+            Timber.d("item id >>>>>>>>>>>>> $it}")
+            listAdapter.submitList(it)
+        })
+    }
+
+    private fun getAlarms() {
+        alarmViewModel.getAlarmList()
     }
 
 }

@@ -26,6 +26,12 @@ class AlarmViewModel @Inject constructor(
 
     fun saveAlarm(alarm: Alarm) = viewModelScope.launch(coroutineExceptionHandler) {
         alarmDataBaseUseCase.insert(alarm)
+        addAlarm(alarm)
+    }
+
+    private fun addAlarm(alarm: Alarm) {
+        val list = _alarms.value
+        _alarms.value = list?.plus(alarm)
     }
 
     fun getAlarmList() = viewModelScope.launch(coroutineExceptionHandler) {

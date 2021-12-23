@@ -6,6 +6,7 @@
     <string name="add_reminder">리마인더 추가</string>
 
     <string name="remind_name">리마인드 이름</string>
+    <string name="remind_name_empty">이름없음</string>
     <string name="remind_name_tool_tip">Please enter a name</string>
     <string name="time_setting">시간 설정</string>
     <string name="ringtone">벨소리</string>
