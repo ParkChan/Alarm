@@ -10,4 +10,8 @@
 
     <color name="common_widget_bg">#171d2e</color>
     <color name="btn_reminder_stroke_color">#2b2b2b</color>
+    <color name="btn_save_bg">#f50e3b</color>
+    <color name="text_remind_hint_color">#67778f</color>
+
+
 </resources>

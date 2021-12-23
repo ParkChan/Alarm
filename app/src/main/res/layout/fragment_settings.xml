@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -13,12 +13,150 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/common_padding"
+        android:paddingEnd="@dimen/common_padding">
 
         <include
             android:id="@+id/include_title"
-            layout="@layout/common_title"
-            />
+            layout="@layout/common_title" />
+
+        <TextView
+            android:id="@+id/tv_remind_title_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textSize="@dimen/common_text_size"
+            android:text="@string/remind_name"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:ignore="NotSibling" />
+
+        <EditText
+            android:id="@+id/et_remind_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/remind_name_tool_tip"
+            android:textColorHint="@color/text_remind_hint_color"
+            app:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_remind_title_name" />
+
+        <TextView
+            android:id="@+id/tv_remind_time_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:gravity="left"
+            android:textSize="@dimen/common_text_size"
+            android:text="@string/time_setting"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_remind_name"
+            tools:ignore="NotSibling" />
+
+        <TimePicker
+            android:id="@+id/tp_remind_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:background="@drawable/rect_ringtone"
+            android:theme="@style/MyTimePickerDark"
+            android:timePickerMode="spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_remind_time_title" />
+
+
+        <TextView
+            android:id="@+id/tv_ringtone_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/common_margin"
+            android:gravity="left"
+            android:text="@string/ringtone"
+            android:textStyle="bold"
+            android:textSize="@dimen/common_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tp_remind_time"
+            tools:ignore="NotSibling" />
+
+        <View
+            android:id="@+id/view_bg_ringtone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/common_margin"
+            android:background="@drawable/rect_ringtone"
+            app:layout_constraintDimensionRatio="1:0.25"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_ringtone_title" />
+
+        <ImageView
+            android:id="@+id/iv_ringtone_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_margin"
+            android:background="@drawable/ic_music"
+            app:layout_constraintBottom_toBottomOf="@id/view_bg_ringtone"
+            app:layout_constraintStart_toStartOf="@id/view_bg_ringtone"
+            app:layout_constraintTop_toTopOf="@id/view_bg_ringtone" />
+
+        <TextView
+            android:id="@+id/tv_ringtone_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_margin"
+            android:textSize="@dimen/common_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tv_ringtone_sub_name"
+            app:layout_constraintStart_toEndOf="@id/iv_ringtone_icon"
+            app:layout_constraintTop_toTopOf="@id/view_bg_ringtone"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Ringtone" />
+
+        <TextView
+            android:id="@+id/tv_ringtone_sub_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_margin"
+            android:textColor="@color/teal_700"
+            android:textSize="@dimen/common_text_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/view_bg_ringtone"
+            app:layout_constraintStart_toEndOf="@id/iv_ringtone_icon"
+            app:layout_constraintTop_toBottomOf="@id/tv_ringtone_name"
+            tools:text="Homecoming" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginEnd="@dimen/common_margin"
+            android:background="@drawable/chevron_right"
+            app:layout_constraintBottom_toBottomOf="@id/view_bg_ringtone"
+            app:layout_constraintEnd_toEndOf="@id/view_bg_ringtone"
+            app:layout_constraintTop_toTopOf="@id/view_bg_ringtone" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/save"
+            android:textStyle="bold"
+            android:theme="@style/SaveButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:0.2"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/common_margin"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -17,23 +17,22 @@
 
         <include
             android:id="@+id/include_title"
-            layout="@layout/common_title"
-            />
+            layout="@layout/common_title" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_add_reminder"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/common_margin"
             android:layout_marginEnd="@dimen/common_margin"
-            android:background="@drawable/rect_add_reminder"
-            android:drawableStart="@drawable/ic_add"
             android:drawablePadding="4dp"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/alarm_list_reminder_padding_left"
             android:text="@string/add_reminder"
             android:textSize="@dimen/common_text_size"
-            app:layout_constraintDimensionRatio="4:1"
+            android:theme="@style/AddButton"
+            app:icon="@drawable/ic_add"
+            app:layout_constraintDimensionRatio="1:0.25"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
