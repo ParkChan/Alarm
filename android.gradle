@@ -41,6 +41,7 @@ dependencies {
     testImplementation TestConfig.assertjCore
     testImplementation TestConfig.mockk
 
+    androidTestImplementation TestConfig.testRunner
     androidTestImplementation TestConfig.junitJupiterApi
     androidTestImplementation TestConfig.assertjCore
     androidTestImplementation TestConfig.androidTestCore

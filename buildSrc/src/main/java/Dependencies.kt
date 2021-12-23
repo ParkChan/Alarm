@@ -25,6 +25,7 @@ object Version {
     const val extJunit = "1.1.3"
     const val espresso = "3.4.0"
 
+    const val testRunner = "1.3.0"
     const val androidTestCore = "1.3.0"
     const val androidTestRunner = "1.3.0"
 
@@ -66,7 +67,7 @@ object TestConfig {
     const val junitJupiterApi = "org.junit.jupiter:junit-jupiter-api:${Version.jupiter}"
     const val junitJupiterEngine = "org.junit.jupiter:junit-jupiter-engine:${Version.jupiter}"
     const val assertjCore = "org.assertj:assertj-core:${Version.assertjCore}"
-
+    const val testRunner = "androidx.test:runner:${Version.testRunner}"
     const val androidTestCore =
         "de.mannodermaus.junit5:android-test-core:${Version.androidTestCore}"
     const val androidTestRunner =

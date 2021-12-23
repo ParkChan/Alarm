@@ -35,7 +35,7 @@ class AlarmDaoTest : AlarmDataBaseTest() {
     }
 
     companion object {
-        private const val ALARM_ID = 0
+        private const val ALARM_ID = 1
         private const val ALARM_NAME = "회의"
         private const val IS_ALARM = false
         private const val RINGTONE_URI = ""
