@@ -1,4 +1,4 @@
-package com.chan.alarm.feature.database
+package com.chan.alarm.feature.database.data
 
 import androidx.room.Dao
 import androidx.room.Query

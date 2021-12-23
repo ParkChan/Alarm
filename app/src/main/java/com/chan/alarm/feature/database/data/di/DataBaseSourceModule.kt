@@ -1,7 +1,7 @@
-package com.chan.alarm.feature.database.di
+package com.chan.alarm.feature.database.data.di
 
-import com.chan.alarm.feature.database.source.DataBaseSource
-import com.chan.alarm.feature.database.source.DataBaseSourceImpl
+import com.chan.alarm.feature.database.data.source.DataBaseSource
+import com.chan.alarm.feature.database.data.source.DataBaseSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,6 +14,6 @@ abstract class DataBaseSourceModule {
     @Binds
     @Singleton
     abstract fun bindsDataBaseSource(
-        productLocalDataSourceImpl: DataBaseSourceImpl
+        dataBaseSourceImpl: DataBaseSourceImpl
     ): DataBaseSource
 }

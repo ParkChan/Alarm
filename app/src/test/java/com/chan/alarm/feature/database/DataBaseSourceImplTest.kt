@@ -1,7 +1,9 @@
 package com.chan.alarm.feature.database
 
-import com.chan.alarm.feature.database.source.DataBaseSource
-import com.chan.alarm.feature.database.source.DataBaseSourceImpl
+import com.chan.alarm.feature.database.data.AlarmDao
+import com.chan.alarm.feature.database.data.AlarmTable
+import com.chan.alarm.feature.database.data.source.DataBaseSource
+import com.chan.alarm.feature.database.data.source.DataBaseSourceImpl
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking

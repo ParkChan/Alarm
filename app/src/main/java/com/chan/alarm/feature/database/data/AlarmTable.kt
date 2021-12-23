@@ -1,4 +1,4 @@
-package com.chan.alarm.feature.database
+package com.chan.alarm.feature.database.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

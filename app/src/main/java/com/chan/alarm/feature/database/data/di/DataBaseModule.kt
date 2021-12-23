@@ -1,9 +1,9 @@
-package com.chan.alarm.feature.database.di
+package com.chan.alarm.feature.database.data.di
 
 import android.content.Context
 import androidx.room.Room
-import com.chan.alarm.feature.database.AlarmDao
-import com.chan.alarm.feature.database.AlarmDatabase
+import com.chan.alarm.feature.database.data.AlarmDao
+import com.chan.alarm.feature.database.data.AlarmDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,14 +16,14 @@ import javax.inject.Singleton
 class DatabaseModule {
     @Provides
     @Singleton
-    fun providesProductDatabase(@ApplicationContext context: Context): AlarmDatabase =
+    fun providesAlarmDatabase(@ApplicationContext context: Context): AlarmDatabase =
         Room.databaseBuilder(
             context,
             AlarmDatabase::class.java,
-            "product.db"
+            "alarm.db"
         ).build()
 
     @Provides
     @Singleton
-    fun providesProductDao(database: AlarmDatabase): AlarmDao = database.alarmDao()
+    fun providesAlarmDao(database: AlarmDatabase): AlarmDao = database.alarmDao()
 }

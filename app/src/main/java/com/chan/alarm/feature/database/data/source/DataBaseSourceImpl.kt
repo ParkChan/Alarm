@@ -1,7 +1,7 @@
-package com.chan.alarm.feature.database.source
+package com.chan.alarm.feature.database.data.source
 
-import com.chan.alarm.feature.database.AlarmDao
-import com.chan.alarm.feature.database.AlarmTable
+import com.chan.alarm.feature.database.data.AlarmDao
+import com.chan.alarm.feature.database.data.AlarmTable
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 

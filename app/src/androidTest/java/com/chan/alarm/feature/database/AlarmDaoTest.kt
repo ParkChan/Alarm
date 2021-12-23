@@ -1,11 +1,13 @@
 package com.chan.alarm.feature.database
 
+import com.chan.alarm.feature.database.data.AlarmDao
+import com.chan.alarm.feature.database.data.AlarmTable
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class AlarmDaoTest : AlarmDataBaseTest() {
+class AlarmDaoTest : AlarmBaseTest() {
 
     private lateinit var alarmDao: AlarmDao
 
