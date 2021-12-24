@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
+    android:id="@+id/navigation_graph"
     app:startDestination="@+id/fragment_alarm_list">
 
     <fragment
@@ -13,6 +13,7 @@
         <action
             android:id="@+id/action_alarm_list_fragment_to_settings_fragment_graph"
             app:destination="@id/fragment_settings" />
+
     </fragment>
 
     <fragment

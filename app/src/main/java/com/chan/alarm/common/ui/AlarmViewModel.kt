@@ -65,7 +65,6 @@ class AlarmViewModel @Inject constructor(
         }
 
     fun addBroadCastAlarmManager(context: Context, alarm: Alarm) {
-        Timber.d(">>>>>>>> addBroadCastAlarmManager")
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
         val bundle = Bundle()

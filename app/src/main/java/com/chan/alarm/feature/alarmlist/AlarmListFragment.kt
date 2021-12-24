@@ -12,7 +12,6 @@ import com.chan.alarm.feature.database.domain.data.Alarm
 import com.chan.ui.BR
 import com.chan.ui.BaseFragment
 import com.chan.ui.adapter.BaseListAdapter
-import timber.log.Timber
 
 class AlarmListFragment : BaseFragment<FragmentAlarmListBinding>(
     FragmentAlarmListBinding::inflate
@@ -70,7 +69,6 @@ class AlarmListFragment : BaseFragment<FragmentAlarmListBinding>(
 
     private fun initViewModelObserve() {
         alarmViewModel.alarms.observe(viewLifecycleOwner, {
-            Timber.d("item id >>>>>>>>>>>>> $it}")
             listAdapter.submitList(it)
         })
     }
