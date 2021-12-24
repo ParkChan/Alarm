@@ -20,13 +20,6 @@
 
 - 재생은 MediaPlayer, RingToneManager 가 있는것으로 확인됨
     - 링톤 타입의 아이템을 재생할 것이기에 RingToneManager를 사용하기로 선택
-        - 외부 음원 항목을 선택해서 Play가 필요한 단계에서는 Result 타입을 분리하여 구현
-            - 예시) RESULT_URI_TYPE = RINGTONE_URI, STORAGE_MUSIC_URI
-                - 당장 MediaPlayer를 사용하지않더라도 설계시 타입에 따른 동작을 사전에 분리해두면 확장성에 좋을듯
-
-- [MultiModule 간의 탐색](https://developer.android.com/guide/navigation/navigation-multi-module)
-    - [대상 간 데이터 전달](https://developer.android.com/guide/navigation/navigation-pass-data)
-
 
 ### 2.Alarm Table 컬럼 정의
 - 알람이름,
@@ -38,9 +31,12 @@
 - 아키텍처 설계
     - AppModule(Activity)
         - common
+            - ui
         - feature
-            - alarmlist
+            - alarmList
             - settings
+            - alarm
+            - dataBase
         
     - CommonModule
         - UI 구현시 재사용이 많은 BaseActivity, BaseFragment, ListAdapter, ViewHolder
@@ -55,22 +51,11 @@
 - 알람매니저 기능 테스트
 - [리마인드 알림] UI 구현
 
-
 ### 기타
 - (이미지 사용)[https://fonts.google.com/icons?selected=Material+Icons]
 
 
-### 구글링 검색찬스!! 도움이 된 자료
-- https://jamssoft.tistory.com/31
-  https://jamssoft.tistory.com/29
-  https://jamssoft.tistory.com/30?category=561811
-  https://www.tabnine.com/code/java/methods/android.media.RingtoneManager/setType
-
-https://proandroiddev.com/android-architecture-d7405db1361c
-https://oozou.com/blog/an-easy-way-to-use-deep-link-in-navigation-component-on-a-big-project-97
-
 ### 네비게이션 컴포넌트 관련 참고자료
-
 ---
 
 - 네비게이션 가이드
