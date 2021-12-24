@@ -1,5 +1,6 @@
 package com.chan.alarm.common.ui
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
@@ -64,38 +65,53 @@ class AlarmViewModel @Inject constructor(
             getAlarmList()
         }
 
-    fun addBroadCastAlarmManager(context: Context, alarm: Alarm) {
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val intent = Intent(context, AlarmReceiver::class.java)
-        val bundle = Bundle()
-        bundle.putInt(BUNDLE_KEY_ALARM_ID, alarm.id)
-        intent.putExtras(bundle)
+    @SuppressLint("UnspecifiedImmutableFlag")
+    fun addBroadCastAlarmManager(context: Context, alarm: Alarm) =
+        viewModelScope.launch(coroutineExceptionHandler) {
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val intent = Intent(context, AlarmReceiver::class.java)
+            val bundle = Bundle()
+            bundle.putInt(BUNDLE_KEY_ALARM_ID, alarm.id)
+            intent.putExtras(bundle)
 
-        val pendingIntent =
-            PendingIntent.getBroadcast(context, alarm.id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            val pendingIntent =
+                PendingIntent.getBroadcast(
+                    context,
+                    alarm.id,
+                    intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
+                )
 
-        val alarmClockInfo = AlarmManager.AlarmClockInfo(alarm.timeStamp, pendingIntent)
-        alarmManager.setAlarmClock(alarmClockInfo, pendingIntent)
-    }
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                alarm.timeStamp,
+                pendingIntent
+            )
 
+        }
+
+    @SuppressLint("UnspecifiedImmutableFlag")
     fun cancelBroadCastAlarmManager(context: Context, alarmId: Int) {
         val intent = Intent(context, AlarmReceiver::class.java)
         val pendingIntent =
             PendingIntent.getBroadcast(context, alarmId, intent, PendingIntent.FLAG_NO_CREATE)
-        pendingIntent?.cancel()
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmManager.cancel(pendingIntent)
+
     }
 
     fun onClickCheckBox(context: Context, isCheck: Boolean, alarm: Alarm) {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            Timber.d(" isCheck $isCheck")
-            if (isCheck) {
-                alarm.isAlarm = true
-                addBroadCastAlarmManager(context, alarm)
-            } else {
-                alarm.isAlarm = false
-                cancelBroadCastAlarmManager(context, alarm.id)
-            }
-            updateAlarm(alarm)
+        Timber.d(" isCheck $isCheck")
+        Timber.d(" onClickCheckBox id >> ${alarm.id}")
+
+        val alarmData = alarm.apply { isAlarm = isCheck }
+
+        updateAlarm(alarmData)
+        if (isCheck) {
+            addBroadCastAlarmManager(context, alarmData)
+        } else {
+            cancelBroadCastAlarmManager(context, alarmData.id)
         }
+
     }
 }

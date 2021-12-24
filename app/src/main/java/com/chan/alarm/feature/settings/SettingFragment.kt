@@ -61,7 +61,10 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
     private fun initViewModelObserve() {
         alarmViewModel.addAlarmEvent.observe(viewLifecycleOwner, {
             alarmViewModel.addBroadCastAlarmManager(binding.btnSave.context, it)
-            binding.btnSave.findNavController().popBackStack()
+
+            val action = SettingFragmentDirections.actionSettingsFragmentToAlarmListFragmentGraph()
+            binding.btnSave.findNavController().navigate(action)
+
         })
     }
 
