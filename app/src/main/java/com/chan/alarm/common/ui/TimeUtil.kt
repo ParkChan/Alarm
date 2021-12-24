@@ -9,7 +9,7 @@ object TimeUtil {
     private const val FORMATTER = "HH:mm"
     private const val AM = "AM"
     private const val PM = "PM"
-    private val timeZone = TimeZone.getTimeZone("Asia/Seoul")
+    private val timeZone = TimeZone.getDefault()
 
     fun convertAlarmTimeMills(hour: Int, minute: Int): Long =
         Calendar.getInstance(timeZone).apply {

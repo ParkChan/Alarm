@@ -115,13 +115,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/common_margin"
+            android:text="@string/ringtone_en"
             android:textSize="@dimen/common_text_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/tv_ringtone_sub_name"
             app:layout_constraintStart_toEndOf="@id/iv_ringtone_icon"
             app:layout_constraintTop_toTopOf="@id/view_bg_ringtone"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="Ringtone" />
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/tv_ringtone_sub_name"

@@ -10,6 +10,11 @@
     <string name="remind_name_tool_tip">Please enter a name</string>
     <string name="time_setting">시간 설정</string>
     <string name="ringtone">벨소리</string>
+    <string name="ringtone_empty">벨소리 없음</string>
     <string name="save">save</string>
     <string name="dismiss">dismiss</string>
+    <string name="ringtone_en">Ringtone</string>
+
+    <string name="snack_bar_msg_select_ringtone">벨소리를 선택해주세요.</string>
+    <string name="snack_bar_msg_input_remind_name">리마인드 이름을 작성해주세요.</string>
 </resources>
