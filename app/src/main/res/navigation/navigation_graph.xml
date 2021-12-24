@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/fragment_alarm_list"
         android:name="com.chan.alarm.feature.alarmlist.AlarmListFragment"
-        android:label="@string/title_alarm_list"
+        android:label="@string/fragment_label_alarm_list"
         tools:layout="@layout/fragment_alarm_list">
         <action
             android:id="@+id/action_alarm_list_fragment_to_settings_fragment_graph"
@@ -18,12 +18,31 @@
     <fragment
         android:id="@+id/fragment_settings"
         android:name="com.chan.alarm.feature.settings.SettingFragment"
-        android:label="@string/title_remind_settings"
+        android:label="@string/fragment_label_remind_settings"
         tools:layout="@layout/fragment_settings">
         <action
             android:id="@+id/action_settings_fragment_to_alarm_list_fragment_graph"
             app:destination="@id/fragment_alarm_list" />
-
     </fragment>
+
+    <fragment
+        android:id="@+id/fragment_alarm"
+        android:name="com.chan.alarm.feature.alarm.AlarmFragment"
+        android:label="@string/fragment_label_alarm"
+        tools:layout="@layout/fragment_alarm">
+        <action
+            android:id="@+id/action_alarm_fragment_to_alarm_list_fragment_graph"
+            app:destination="@id/fragment_alarm_list"
+            app:popUpTo="@id/fragment_alarm_list"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="alarmId"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <deepLink
+            android:id="@+id/deeplink_alarm"
+            app:uri="@string/alarm_deep_link_query" />
+    </fragment>
+
 
 </navigation>

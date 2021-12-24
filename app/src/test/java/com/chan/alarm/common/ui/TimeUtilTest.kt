@@ -1,5 +1,6 @@
 package com.chan.alarm.common.ui
 
+import com.chan.alarm.common.ui.TimeUtil.FORMAT_TYPE_HH_MM_AA
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -15,10 +16,7 @@ class TimeUtilTest {
         val minute2 = 50
         val timeInMillis2 = TimeUtil.convertAlarmTimeMills(hour2, minute2)
 
-        assertEquals("18:50 PM", TimeUtil.convertAlarmDisplayTime(timeInMillis1))
-        assertEquals("01:50 AM", TimeUtil.convertAlarmDisplayTime(timeInMillis2))
-
-
-        println(TimeUtil.convertAlarmDisplayTime(1640331746265))
+        assertEquals("18:50 오후", TimeUtil.convertAlarmDisplayTime(FORMAT_TYPE_HH_MM_AA, timeInMillis1))
+        assertEquals("01:50 오전", TimeUtil.convertAlarmDisplayTime(FORMAT_TYPE_HH_MM_AA, timeInMillis2))
     }
 }

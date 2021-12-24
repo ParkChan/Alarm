@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.content.Context" />
+
         <variable
             name="alarm"
             type="com.chan.alarm.feature.database.domain.data.Alarm" />
@@ -70,12 +72,14 @@
             tools:text="내시경 약 먹기" />
 
         <CheckBox
+            android:id="@+id/cb_alarm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/common_margin"
             android:layout_marginEnd="@dimen/common_margin"
             android:button="@drawable/selector_check_box_alarm"
             android:checked="@{alarm.isAlarm}"
+            android:onClick="@{() -> alarmViewModel.onClickCheckBox(context, cbAlarm.isChecked(), alarm) }"
             app:layout_constraintBottom_toBottomOf="@id/view_bg"
             app:layout_constraintEnd_toEndOf="@id/view_bg"
             app:layout_constraintTop_toTopOf="@id/view_bg" />

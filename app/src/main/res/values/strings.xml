@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Alarm</string>
-    <string name="title_alarm_list">리마인드</string>
-    <string name="title_remind_settings">리마인드 설정</string>
+    <string name="fragment_label_alarm_list">리마인드</string>
+    <string name="fragment_label_remind_settings">리마인드 설정</string>
+    <string name="fragment_label_alarm">알람</string>
 
     <string name="add_reminder">리마인더 추가</string>
 
@@ -17,4 +18,8 @@
 
     <string name="snack_bar_msg_select_ringtone">벨소리를 선택해주세요.</string>
     <string name="snack_bar_msg_input_remind_name">리마인드 이름을 작성해주세요.</string>
+
+    <string name="alarm_deep_link_query">android-app://fragment_alarm?alarmId={alarmId}</string>
+    <string name="alarm_deep_link">android-app://fragment_alarm?alarmId=</string>
+
 </resources>

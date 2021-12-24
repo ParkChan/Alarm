@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chan.alarm">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="false"
@@ -12,11 +14,13 @@
         android:theme="@style/Theme.Alarm">
 
         <activity android:name="com.chan.alarm.MainActivity">
+            <nav-graph android:value="@navigation/navigation_graph" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name="com.chan.alarm.common.ui.AlarmReceiver" />
     </application>
 
 </manifest>

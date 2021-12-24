@@ -49,7 +49,7 @@ class AlarmListFragment : BaseFragment<FragmentAlarmListBinding>(
     }
 
     private fun initTitle() {
-        binding.includeTitle.tvTitle.text = getString(R.string.title_alarm_list)
+        binding.includeTitle.tvTitle.text = getString(R.string.fragment_label_alarm_list)
     }
 
     private fun initRecyclerView() {

@@ -9,11 +9,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.chan.alarm.R
 import com.chan.alarm.common.ui.AlarmViewModel
+import com.chan.alarm.common.ui.TimeUtil
 import com.chan.alarm.common.ui.TimeUtil.convertAlarmTimeMills
 import com.chan.alarm.databinding.FragmentSettingsBinding
 import com.chan.alarm.feature.database.domain.data.Alarm
 import com.chan.ui.BaseFragment
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 
 class SettingFragment : BaseFragment<FragmentSettingsBinding>(
@@ -34,39 +36,49 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
         super.onViewCreated(view, savedInstanceState)
         initView()
         initViewModel()
+        initViewModelObserve()
         initListener()
     }
 
     private fun initView() {
         initTitle()
         binding.tvRingtoneSubName.text = getString(R.string.ringtone_empty)
+
+        val calendar = TimeUtil.calendar()
+        binding.tpRemindTime.hour = calendar.get(Calendar.HOUR_OF_DAY)
+        binding.tpRemindTime.minute = calendar.get(Calendar.MINUTE)
+
     }
 
     private fun initTitle() {
-        binding.includeTitle.tvTitle.text = getString(R.string.title_remind_settings)
+        binding.includeTitle.tvTitle.text = getString(R.string.fragment_label_remind_settings)
     }
 
     private fun initViewModel() {
         binding.alarmViewModel = alarmViewModel
     }
 
+    private fun initViewModelObserve() {
+        alarmViewModel.addAlarmEvent.observe(viewLifecycleOwner, {
+            alarmViewModel.addBroadCastAlarmManager(binding.btnSave.context, it)
+            binding.btnSave.findNavController().popBackStack()
+        })
+    }
+
     private fun initListener() {
         binding.btnSave.setOnClickListener {
-
-            if(isValidationCheck()){
+            if (isValidationCheck()) {
                 val remindName = binding.etRemindName.text.toString()
                 val hour = binding.tpRemindTime.hour
                 val minute = binding.tpRemindTime.minute
 
-                alarmViewModel.saveAlarm(
-                    Alarm(
-                        alarmName = remindName,
-                        timeStamp = convertAlarmTimeMills(hour, minute),
-                        isAlarm = true,
-                        ringtoneUri = alarmVo.ringtoneUri,
-                    )
+                val alarm = Alarm(
+                    alarmName = remindName,
+                    timeStamp = convertAlarmTimeMills(hour, minute),
+                    isAlarm = true,
+                    ringtoneUri = alarmVo.ringtoneUri
                 )
-                binding.btnSave.findNavController().popBackStack()
+                alarmViewModel.saveAlarm(alarm)
             }
         }
 

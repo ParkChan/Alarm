@@ -11,4 +11,7 @@ interface DataBaseSource {
 
     suspend fun insert(alarmTable: AlarmTable)
     suspend fun select(): List<AlarmTable>
+    suspend fun selectId(id: Int): AlarmTable
+    suspend fun update(alarmTable: AlarmTable)
+
 }

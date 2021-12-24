@@ -6,34 +6,29 @@ import java.util.*
 object TimeUtil {
 
     private const val NEXT_DAY = 1
-    private const val FORMATTER = "HH:mm"
-    private const val AM = "AM"
-    private const val PM = "PM"
+    const val FORMAT_TYPE_HH_MM_AA = "HH:mm aa"
+    const val FORMAT_TYPE_HH_MM = "HH:mm"
     private val timeZone = TimeZone.getDefault()
 
-    fun convertAlarmTimeMills(hour: Int, minute: Int): Long =
-        Calendar.getInstance(timeZone).apply {
-            set(Calendar.HOUR, hour)
+    fun convertAlarmTimeMills(hour: Int, minute: Int): Long {
+        return Calendar.getInstance(timeZone).apply {
+            set(Calendar.HOUR_OF_DAY, hour)
             set(Calendar.MINUTE, minute)
             if (before(Calendar.getInstance())) {
                 add(Calendar.DATE, NEXT_DAY)
             }
         }.timeInMillis
-
-    fun convertAlarmDisplayTime(timeStamp: Long): String {
-        val calendar = Calendar.getInstance(timeZone)
-        calendar.time = Date().apply { time = timeStamp }
-        val simpleDateFormat = SimpleDateFormat(FORMATTER, Locale.getDefault())
-        simpleDateFormat.timeZone = timeZone
-        return simpleDateFormat.format(calendar.time).plus(" ").plus(getAmPm(calendar))
     }
 
-    private fun getAmPm(calendar: Calendar): String {
-        return if (calendar.get(Calendar.AM_PM) == Calendar.AM) {
-            AM
-        } else {
-            PM
+    fun calendar(): Calendar = Calendar.getInstance(timeZone)
+
+    fun convertAlarmDisplayTime(format: String, timeStamp: Long): String {
+        val date = Date().apply {
+            time = timeStamp
         }
+        val simpleDateFormat = SimpleDateFormat(format, Locale.getDefault())
+        return simpleDateFormat.format(date)
     }
+
 
 }
