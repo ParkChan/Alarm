@@ -19,7 +19,7 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     private fun moveAlarmFragment(context: Context, id: Int) {
-        val intent = Intent(context.applicationContext, MainActivity::class.java)
+        val intent = Intent(context, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.data =
             context.getString(R.string.alarm_deep_link).plus(id).toUri()

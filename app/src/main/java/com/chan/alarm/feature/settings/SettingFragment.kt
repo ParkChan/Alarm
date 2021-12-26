@@ -11,13 +11,13 @@ import androidx.navigation.findNavController
 import com.chan.alarm.R
 import com.chan.alarm.common.ui.AlarmEvent
 import com.chan.alarm.common.ui.AlarmViewModel
+import com.chan.alarm.common.ui.SnackbarUtil
 import com.chan.alarm.common.ui.TimeUtil
 import com.chan.alarm.common.ui.TimeUtil.convertAlarmTimeMills
 import com.chan.alarm.databinding.FragmentSettingsBinding
 import com.chan.alarm.feature.database.domain.data.Alarm
 import com.chan.alarm.feature.database.domain.usecase.AlarmDataBaseUseCase
 import com.chan.ui.BaseFragment
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.*
@@ -101,11 +101,11 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
     private fun isValidationCheck(): Boolean {
         return when {
             binding.etRemindName.text.isEmpty() -> {
-                showSnackbar(getString(R.string.snack_bar_msg_input_remind_name))
+                SnackbarUtil.show(binding.root, getString(R.string.snack_bar_msg_input_remind_name))
                 false
             }
             alarmVo.ringtoneUri.isEmpty() -> {
-                showSnackbar(getString(R.string.snack_bar_msg_select_ringtone))
+                SnackbarUtil.show(binding.root, getString(R.string.snack_bar_msg_select_ringtone))
                 false
             }
             else -> {
@@ -114,12 +114,6 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
         }
     }
 
-    private fun showSnackbar(message: String) {
-        Snackbar.make(
-            binding.root,
-            message,
-            Snackbar.LENGTH_SHORT
-        ).show()
-    }
+
 }
 
