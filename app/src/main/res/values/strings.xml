@@ -18,7 +18,7 @@
 
     <string name="snack_bar_msg_select_ringtone">벨소리를 선택해주세요.</string>
     <string name="snack_bar_msg_input_remind_name">리마인드 이름을 작성해주세요.</string>
-
+    <string name="snack_bar_msg_runtime_permission">알람표시를 위한 다른 앱 위에 그리기 권한을 허용해주세요.</string>
     <string name="alarm_deep_link_query">android-app://fragment_alarm?alarmId={alarmId}</string>
     <string name="alarm_deep_link">android-app://fragment_alarm?alarmId=</string>
 
