@@ -43,9 +43,6 @@ class AlarmViewModel @Inject constructor(
         }
 
     fun onClickCheckBox(context: Context, isCheck: Boolean, alarm: Alarm) {
-        Timber.d(" isCheck $isCheck")
-        Timber.d(" onClickCheckBox id >> ${alarm.id}")
-
         val alarmData = alarm.apply { isAlarm = isCheck }
 
         updateAlarm(alarmData)

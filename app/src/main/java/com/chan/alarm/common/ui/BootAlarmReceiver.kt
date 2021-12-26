@@ -24,7 +24,6 @@ class BootAlarmReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context, intent: Intent?) {
-        Timber.d("BootAlarmReceiver >>> onReceive")
         intent?.action?.let { action ->
             if (action == Intent.ACTION_BOOT_COMPLETED ||
                 action == Intent.ACTION_LOCKED_BOOT_COMPLETED
@@ -33,7 +32,6 @@ class BootAlarmReceiver : BroadcastReceiver() {
                     alarmDataBaseUseCase.select().onSuccess { alarmList ->
                         alarmList.forEach {
                             if (it.isAlarm) {
-                                Timber.d("BootAlarmReceiver >>> reboot add alarm $it ")
                                 AlarmEvent.addBroadCastAlarmManager(context, it)
                             }
                         }
