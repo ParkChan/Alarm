@@ -39,7 +39,7 @@ class AlarmViewModelTest {
         } returns listOf(mockAlarm)
 
         viewModel.saveAlarm(mockAlarm)
-        viewModel.getAlarmList()
+        viewModel.selectAlarmList()
 
         assertEquals(
             mockAlarm,

@@ -6,18 +6,24 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.chan.alarm.R
+import com.chan.alarm.common.ui.AlarmEvent
 import com.chan.alarm.common.ui.AlarmViewModel
 import com.chan.alarm.common.ui.TimeUtil
 import com.chan.alarm.common.ui.TimeUtil.convertAlarmTimeMills
 import com.chan.alarm.databinding.FragmentSettingsBinding
 import com.chan.alarm.feature.database.domain.data.Alarm
+import com.chan.alarm.feature.database.domain.usecase.AlarmDataBaseUseCase
 import com.chan.ui.BaseFragment
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import java.util.*
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingsBinding>(
     FragmentSettingsBinding::inflate
 ) {
@@ -30,13 +36,15 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
             alarmVo.ringtoneUri = it.toString()
         }
     }
+
+    @Inject
+    lateinit var alarmDataBaseUseCase: AlarmDataBaseUseCase
     private val alarmVo = AlarmVo()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initViewModel()
-        initViewModelObserve()
         initListener()
     }
 
@@ -58,30 +66,27 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
         binding.alarmViewModel = alarmViewModel
     }
 
-    private fun initViewModelObserve() {
-        alarmViewModel.addAlarmEvent.observe(viewLifecycleOwner, {
-            alarmViewModel.addBroadCastAlarmManager(binding.btnSave.context, it)
-
-            val action = SettingFragmentDirections.actionSettingsFragmentToAlarmListFragmentGraph()
-            binding.btnSave.findNavController().navigate(action)
-
-        })
-    }
-
     private fun initListener() {
         binding.btnSave.setOnClickListener {
-            if (isValidationCheck()) {
-                val remindName = binding.etRemindName.text.toString()
-                val hour = binding.tpRemindTime.hour
-                val minute = binding.tpRemindTime.minute
+            lifecycleScope.launch {
+                if (isValidationCheck()) {
+                    val remindName = binding.etRemindName.text.toString()
+                    val hour = binding.tpRemindTime.hour
+                    val minute = binding.tpRemindTime.minute
 
-                val alarm = Alarm(
-                    alarmName = remindName,
-                    timeStamp = convertAlarmTimeMills(hour, minute),
-                    isAlarm = true,
-                    ringtoneUri = alarmVo.ringtoneUri
-                )
-                alarmViewModel.saveAlarm(alarm)
+                    val alarm = Alarm(
+                        alarmName = remindName,
+                        timeStamp = convertAlarmTimeMills(hour, minute),
+                        isAlarm = true,
+                        ringtoneUri = alarmVo.ringtoneUri
+                    )
+                    alarmDataBaseUseCase.insert(alarm)
+                    alarmDataBaseUseCase.selectAlarmName(alarm.alarmName).getOrNull()?.let {
+                        AlarmEvent.addBroadCastAlarmManager(binding.btnSave.context, it)
+                        binding.btnSave.findNavController().popBackStack()
+                    }
+                    alarmViewModel.selectAlarmList()
+                }
             }
         }
 

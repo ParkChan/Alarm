@@ -19,6 +19,9 @@ class AlarmRepositoryImpl @Inject constructor(
     override suspend fun selectId(id: Int): Alarm =
         dataBaseSource.selectId(id).mapToDomain()
 
+    override suspend fun selectAlarmName(alarmName: String): Alarm =
+        dataBaseSource.selectName(alarmName).mapToDomain()
+
     override suspend fun update(alarm: Alarm) =
         dataBaseSource.update(mapToAlarmTable(alarm))
 

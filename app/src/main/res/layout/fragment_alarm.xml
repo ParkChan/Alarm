@@ -45,7 +45,7 @@
             tools:text="08:00" />
 
         <Button
-            android:id="@+id/btn_close"
+            android:id="@+id/btn_dismiss"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/common_margin"

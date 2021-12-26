@@ -44,7 +44,7 @@ class AlarmListFragment : BaseFragment<FragmentAlarmListBinding>(
         initViewModel()
         initListener()
         initViewModelObserve()
-        getAlarms()
+        initViewData()
     }
 
     private fun initTitle() {
@@ -73,8 +73,8 @@ class AlarmListFragment : BaseFragment<FragmentAlarmListBinding>(
         })
     }
 
-    private fun getAlarms() {
-        alarmViewModel.getAlarmList()
+    private fun initViewData() {
+        alarmViewModel.selectAlarmList()
     }
 
 }

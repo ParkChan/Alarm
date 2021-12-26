@@ -18,6 +18,10 @@ class AlarmDataBaseUseCaseImpl @Inject constructor(
         repository.selectId(id)
     }
 
+    override suspend fun selectAlarmName(alarmName: String) = runCatching {
+        repository.selectAlarmName(alarmName)
+    }
+
     override suspend fun update(alarm: Alarm) = repository.update(alarm)
 
 }

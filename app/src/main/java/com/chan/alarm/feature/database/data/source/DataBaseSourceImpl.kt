@@ -24,7 +24,12 @@ class DataBaseSourceImpl @Inject constructor(
             alarmDao.selectId(id)
         }
 
-    override suspend fun update(alarmTable: AlarmTable)  =
+    override suspend fun selectName(alarmName: String): AlarmTable =
+        withContext(dispatcher) {
+            alarmDao.selectAlarmName(alarmName)
+        }
+
+    override suspend fun update(alarmTable: AlarmTable) =
         withContext(dispatcher) {
             alarmDao.update(alarmTable)
         }
