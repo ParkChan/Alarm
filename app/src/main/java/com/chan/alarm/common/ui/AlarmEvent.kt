@@ -29,16 +29,17 @@ object AlarmEvent {
             alarm.timeStamp,
             pendingIntent
         )
-
     }
 
     fun cancelBroadCastAlarmManager(context: Context, alarmId: Int) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
         val pendingIntent =
             PendingIntent.getBroadcast(context, alarmId, intent, PendingIntent.FLAG_NO_CREATE)
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.cancel(pendingIntent)
 
+        pendingIntent?.let{
+            alarmManager.cancel(pendingIntent)
+        }
     }
 
 }

@@ -6,9 +6,11 @@ import android.content.Intent
 import androidx.core.net.toUri
 import com.chan.alarm.MainActivity
 import com.chan.alarm.R
+import timber.log.Timber
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
+        Timber.d("AlarmReceiver onReceive()")
         val bundle = intent?.extras
         val alarmId: Int? = bundle?.getInt(BUNDLE_KEY_ALARM_ID)
         alarmId?.let {
@@ -17,11 +19,11 @@ class AlarmReceiver : BroadcastReceiver() {
     }
 
     private fun moveAlarmFragment(context: Context, id: Int) {
-        val deepLinkIntent = Intent(context, MainActivity::class.java)
-        deepLinkIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        deepLinkIntent.data =
+        val intent = Intent(context.applicationContext, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.data =
             context.getString(R.string.alarm_deep_link).plus(id).toUri()
-        context.startActivity(deepLinkIntent)
+        context.startActivity(intent)
     }
 
     companion object {
