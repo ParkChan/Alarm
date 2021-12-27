@@ -71,6 +71,7 @@ dependencies {
     androidTestRuntimeOnly TestConfig.androidTestRunner
 
     implementation CoroutineConfig.core
+    testImplementation CoroutineConfig.test
 
     implementation DaggerHiltConfig.android
     kapt DaggerHiltConfig.compiler

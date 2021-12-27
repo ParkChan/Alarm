@@ -61,6 +61,7 @@ object AndroidConfig {
 
 object CoroutineConfig {
     const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutine}"
+    const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.coroutine}"
 }
 
 object TestConfig {

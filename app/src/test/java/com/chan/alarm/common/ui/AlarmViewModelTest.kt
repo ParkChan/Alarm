@@ -2,6 +2,7 @@ package com.chan.alarm.common.ui
 
 import com.chan.alarm.feature.database.domain.data.Alarm
 import com.chan.alarm.feature.database.domain.usecase.AlarmDataBaseUseCase
+import com.chan.alarm.util.CoroutinesTestExtension
 import com.chan.alarm.util.InstantExecutorExtension
 import com.chan.alarm.util.getOrAwaitValue
 import io.mockk.coEvery
@@ -12,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(InstantExecutorExtension::class)
+@ExtendWith(InstantExecutorExtension::class, CoroutinesTestExtension::class)
 class AlarmViewModelTest {
 
     private val useCase: AlarmDataBaseUseCase = mockk(relaxed = true)

@@ -30,11 +30,12 @@ class AlarmViewModel @Inject constructor(
     }
 
     fun selectAlarmList() = viewModelScope.launch(coroutineExceptionHandler) {
-        alarmDataBaseUseCase.select().onSuccess {
-            _alarms.value = it
-        }.onFailure {
-            Timber.e(it.message)
-        }
+        alarmDataBaseUseCase.select()
+            .onSuccess {
+                _alarms.value = it
+            }.onFailure {
+                Timber.e(it.message)
+            }
     }
 
     private fun updateAlarm(alarm: Alarm) =

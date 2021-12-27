@@ -25,3 +25,4 @@ class InstantExecutorExtension : BeforeEachCallback, AfterEachCallback {
         ArchTaskExecutor.getInstance().setDelegate(null)
     }
 }
+
