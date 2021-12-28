@@ -6,8 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chan.alarm.common.ui.AlarmEvent
+import com.chan.alarm.common.ui.util.TimeUtil
 import com.chan.alarm.feature.database.domain.data.Alarm
 import com.chan.alarm.feature.database.domain.usecase.AlarmDataBaseUseCase
+import com.chan.ui.livedata.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
@@ -20,11 +22,11 @@ class AlarmViewModel @Inject constructor(
     private val alarmDataBaseUseCase: AlarmDataBaseUseCase
 ) : ViewModel() {
 
-    private val _alarms = MutableLiveData<List<Alarm>>()
-    val alarms: LiveData<List<Alarm>> get() = _alarms
+    private val _alarms = MutableLiveData<Event<List<Alarm>>>()
+    val alarms: LiveData<Event<List<Alarm>>> get() = _alarms
 
-    private val _displayAlarm = MutableLiveData<Alarm>()
-    val displayAlarm: LiveData<Alarm> get() = _displayAlarm
+    private val _displayAlarm = MutableLiveData<Event<Alarm>>()
+    val displayAlarm: LiveData<Event<Alarm>> get() = _displayAlarm
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
         Timber.e(exception.message)
@@ -37,7 +39,7 @@ class AlarmViewModel @Inject constructor(
     fun selectAlarmList() = viewModelScope.launch(coroutineExceptionHandler) {
         alarmDataBaseUseCase.select()
             .onSuccess {
-                _alarms.value = it
+                _alarms.value = Event(it)
             }.onFailure {
                 Timber.e(it.message)
             }
@@ -50,7 +52,10 @@ class AlarmViewModel @Inject constructor(
 
     suspend fun selectAlarm(alarmId: Int) =
         viewModelScope.launch(coroutineExceptionHandler) {
-            _displayAlarm.value = alarmDataBaseUseCase.selectId(alarmId).getOrNull()
+            _displayAlarm.value =
+                Event(
+                    alarmDataBaseUseCase.selectId(alarmId).getOrNull() ?: Alarm()
+                )
         }
 
     suspend fun offAlarmInfo(alarm: Alarm) =
@@ -63,15 +68,23 @@ class AlarmViewModel @Inject constructor(
         alarmDataBaseUseCase.selectAlarmName(alarm.alarmName).getOrNull() ?: Alarm()
     }
 
-    fun onClickCheckBox(context: Context, isCheck: Boolean, alarm: Alarm) {
-        val alarmData = alarm.apply { isAlarm = isCheck }
-
-        updateAlarm(alarmData)
-        if (isCheck) {
-            AlarmEvent.addBroadCastAlarmManager(context, alarmData)
-        } else {
-            AlarmEvent.cancelBroadCastAlarmManager(context, alarmData.id)
+    fun onClickCheckBox(context: Context, isCheck: Boolean, alarm: Alarm) =
+        viewModelScope.launch(coroutineExceptionHandler) {
+            val alarmData = alarm.apply { isAlarm = isCheck }
+            updateAlarm(alarmData)
+            if (isCheck) {
+                if (TimeUtil.isYesterday(alarmData.timeStamp)) {
+                    alarmDataBaseUseCase.update(
+                        alarmData.apply {
+                            timeStamp = TimeUtil.nextDayTimeMills(timeStamp)
+                        }
+                    )
+                    AlarmEvent.addBroadCastAlarmManager(context, alarmData)
+                } else {
+                    AlarmEvent.addBroadCastAlarmManager(context, alarmData)
+                }
+            } else {
+                AlarmEvent.cancelBroadCastAlarmManager(context, alarmData.id)
+            }
         }
-
-    }
 }

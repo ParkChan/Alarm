@@ -2,18 +2,19 @@ package com.chan.alarm.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import com.chan.ui.livedata.Event
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 
-fun <T> LiveData<T>.getOrAwaitValue(
+fun <T> LiveData<Event<T>>.getOrAwaitValue(
     time: Long = 2,
     timeUnit: TimeUnit = TimeUnit.SECONDS
-): T {
-    var data: T? = null
+): Event<T> {
+    var data: Event<T>? = null
     val latch = CountDownLatch(1)
-    val observer = object : Observer<T> {
-        override fun onChanged(o: T?) {
+    val observer = object : Observer<Event<T>> {
+        override fun onChanged(o: Event<T>?) {
             data = o
             latch.countDown()
             this@getOrAwaitValue.removeObserver(this)
@@ -28,5 +29,5 @@ fun <T> LiveData<T>.getOrAwaitValue(
     }
 
     @Suppress("UNCHECKED_CAST")
-    return data as T
+    return data as Event<T>
 }

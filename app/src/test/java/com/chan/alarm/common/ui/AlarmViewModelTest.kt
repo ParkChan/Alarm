@@ -45,7 +45,7 @@ class AlarmViewModelTest {
 
         assertEquals(
             mockAlarm,
-            viewModel.alarms.getOrAwaitValue()[0]
+            viewModel.alarms.getOrAwaitValue().peek()[0]
         )
     }
 

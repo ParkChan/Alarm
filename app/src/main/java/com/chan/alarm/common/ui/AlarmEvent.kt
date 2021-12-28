@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.chan.alarm.common.ui.receiver.AlarmReceiver
 import com.chan.alarm.feature.database.domain.data.Alarm
+import timber.log.Timber
 
 object AlarmEvent {
 
@@ -36,11 +37,13 @@ object AlarmEvent {
     fun cancelBroadCastAlarmManager(context: Context, alarmId: Int) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
+        intent.action = AlarmReceiver.ACTION_NAME
         val pendingIntent =
             PendingIntent.getBroadcast(context, alarmId, intent, PendingIntent.FLAG_NO_CREATE)
-
         pendingIntent?.let{
-            alarmManager.cancel(pendingIntent)
+            Timber.d("cancelBroadCastAlarmManager >>>>>>>> $alarmId")
+            alarmManager.cancel(it)
+            it.cancel()
         }
     }
 

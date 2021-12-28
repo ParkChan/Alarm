@@ -17,6 +17,7 @@ import com.chan.alarm.common.ui.viewmodel.AlarmViewModel
 import com.chan.alarm.databinding.FragmentAlarmBinding
 import com.chan.alarm.feature.database.domain.data.Alarm
 import com.chan.ui.BaseFragment
+import com.chan.ui.livedata.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -55,15 +56,16 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(
     }
 
     private fun initViewModelObserve() {
-        alarmViewModel.displayAlarm.observe(viewLifecycleOwner, {
-            alarm = it
-            alarm.run {
-                binding.tvRemindName.text = alarmName
-                binding.tvRemindTime.text =
-                    TimeUtil.convertAlarmDisplayTime(FORMAT_TYPE_HH_MM, timeStamp)
-                startRingtone(binding.root.context, ringtoneUri.toUri())
-            }
-        })
+        alarmViewModel.displayAlarm.observeEvent(
+            lifecycleOwner = viewLifecycleOwner, observer = {
+                alarm = it
+                alarm.run {
+                    binding.tvRemindName.text = alarmName
+                    binding.tvRemindTime.text =
+                        TimeUtil.convertAlarmDisplayTime(FORMAT_TYPE_HH_MM, timeStamp)
+                    startRingtone(binding.root.context, ringtoneUri.toUri())
+                }
+            })
     }
 
     private fun initViewData() = lifecycleScope.launch {

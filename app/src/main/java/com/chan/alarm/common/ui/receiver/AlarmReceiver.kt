@@ -13,9 +13,9 @@ import timber.log.Timber
 class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent?) {
-        Timber.d(">>>>>> onReceive ")
         val action = intent?.action ?: ""
         if (action == ACTION_NAME) {
+            Timber.d(">>>>>> onReceive action name $action")
             wakeLock(context)
             moveAlarmFragment(context, intent)
         }
@@ -46,7 +46,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
     companion object {
         const val BUNDLE_KEY_ALARM_ID = "BUNDLE_KEY_ALARM_ID"
-        const val ACTION_NAME = "AlarmReceiver"
+        const val ACTION_NAME = "ADD_ALARM"
         private const val WAKE_LOCK_TIME_OUT = 5000L
         private const val WAKE_LOCK_TAG = "MyApp:WakeLockTag"
 
