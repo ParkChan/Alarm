@@ -13,6 +13,7 @@ object AlarmEvent {
     fun addBroadCastAlarmManager(context: Context, alarm: Alarm) {
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
+        intent.action = AlarmReceiver.ACTION_NAME
         val bundle = Bundle()
         bundle.putInt(AlarmReceiver.BUNDLE_KEY_ALARM_ID, alarm.id)
         intent.putExtras(bundle)

@@ -65,6 +65,7 @@
             android:text="@{alarm.alarmName}"
             android:textColor="@color/text_remind_hint_color"
             android:textSize="@dimen/common_text_size"
+            android:ellipsize="end"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/view_bg"
             app:layout_constraintStart_toEndOf="@id/iv_alarm_icon"

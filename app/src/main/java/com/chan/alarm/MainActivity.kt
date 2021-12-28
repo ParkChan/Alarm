@@ -1,10 +1,14 @@
 package com.chan.alarm
 
 import android.app.AlertDialog
+import android.app.KeyguardManager
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.view.WindowManager
 import androidx.activity.result.contract.ActivityResultContracts
 import com.chan.alarm.common.ui.util.SnackbarUtil
 import com.chan.alarm.databinding.ActivityMainBinding
@@ -30,6 +34,22 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1 -> {
+                setShowWhenLocked(true)
+                setTurnScreenOn(true)
+                keyguardManager.requestDismissKeyguard(this, null)
+            }
+            Build.VERSION.SDK_INT == Build.VERSION_CODES.O -> {
+                window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
+                window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
+                keyguardManager.requestDismissKeyguard(this, null)
+            }
+        }
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
         requestPermission()
     }
 
@@ -45,7 +65,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 getString(
                     R.string.dialog_message_overlay_permission
                 )
-            )
+            ).setCancelable(false)
             .setPositiveButton(
                 getString(R.string.dialog_message_ok)
             ) { _, _ ->
