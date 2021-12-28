@@ -1,4 +1,4 @@
-package com.chan.alarm.common.ui
+package com.chan.alarm.common.ui.util
 
 import android.view.View
 import com.google.android.material.snackbar.Snackbar

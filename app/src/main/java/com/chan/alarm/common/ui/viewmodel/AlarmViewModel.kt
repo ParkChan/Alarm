@@ -1,10 +1,11 @@
-package com.chan.alarm.common.ui
+package com.chan.alarm.common.ui.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.chan.alarm.common.ui.AlarmEvent
 import com.chan.alarm.feature.database.domain.data.Alarm
 import com.chan.alarm.feature.database.domain.usecase.AlarmDataBaseUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

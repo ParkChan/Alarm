@@ -6,7 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
-import com.chan.alarm.common.ui.SnackbarUtil
+import com.chan.alarm.common.ui.util.SnackbarUtil
 import com.chan.alarm.databinding.ActivityMainBinding
 import com.chan.ui.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint

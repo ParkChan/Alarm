@@ -13,7 +13,7 @@
 
         <variable
             name="alarmViewModel"
-            type="com.chan.alarm.common.ui.AlarmViewModel" />
+            type="com.chan.alarm.common.ui.viewmodel.AlarmViewModel" />
 
     </data>
 

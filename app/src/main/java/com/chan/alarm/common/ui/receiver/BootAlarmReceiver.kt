@@ -1,8 +1,9 @@
-package com.chan.alarm.common.ui
+package com.chan.alarm.common.ui.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import com.chan.alarm.common.ui.AlarmEvent
 import com.chan.alarm.feature.database.domain.usecase.AlarmDataBaseUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler

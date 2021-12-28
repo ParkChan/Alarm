@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import com.chan.alarm.common.ui.receiver.AlarmReceiver
 import com.chan.alarm.feature.database.domain.data.Alarm
 
 object AlarmEvent {

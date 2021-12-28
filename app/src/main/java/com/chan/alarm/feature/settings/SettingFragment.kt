@@ -10,10 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.chan.alarm.R
 import com.chan.alarm.common.ui.AlarmEvent
-import com.chan.alarm.common.ui.AlarmViewModel
-import com.chan.alarm.common.ui.SnackbarUtil
-import com.chan.alarm.common.ui.TimeUtil
-import com.chan.alarm.common.ui.TimeUtil.convertAlarmTimeMills
+import com.chan.alarm.common.ui.util.SnackbarUtil
+import com.chan.alarm.common.ui.util.TimeUtil
+import com.chan.alarm.common.ui.util.TimeUtil.convertAlarmTimeMills
+import com.chan.alarm.common.ui.viewmodel.AlarmViewModel
 import com.chan.alarm.databinding.FragmentSettingsBinding
 import com.chan.alarm.feature.database.domain.data.Alarm
 import com.chan.ui.BaseFragment
@@ -86,8 +86,8 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
                         binding.btnSave.context,
                         alarmViewModel.getAlarm(alarm.alarmName)
                     )
-                    binding.btnSave.findNavController().popBackStack()
                     alarmViewModel.selectAlarmList()
+                    binding.btnSave.findNavController().popBackStack()
                 }
             }
         }

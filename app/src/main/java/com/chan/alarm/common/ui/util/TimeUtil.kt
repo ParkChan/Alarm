@@ -1,4 +1,4 @@
-package com.chan.alarm.common.ui
+package com.chan.alarm.common.ui.util
 
 import java.text.SimpleDateFormat
 import java.util.*
