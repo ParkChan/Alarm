@@ -8,10 +8,12 @@ import android.view.WindowManager
 import androidx.core.net.toUri
 import com.chan.alarm.MainActivity
 import com.chan.alarm.R
+import timber.log.Timber
 
 class AlarmReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent?) {
+        Timber.d(">>>>>> onReceive ")
         val action = intent?.action ?: ""
         if (action == ACTION_NAME) {
             wakeLock(context)
@@ -32,6 +34,7 @@ class AlarmReceiver : BroadcastReceiver() {
     private fun moveAlarmFragment(context: Context, intent: Intent?) {
         val bundle = intent?.extras
         val alarmId: Int? = bundle?.getInt(BUNDLE_KEY_ALARM_ID)
+        Timber.d(">>>>>> onReceive $alarmId")
         alarmId?.let {
             val alarmIntent = Intent(context, MainActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

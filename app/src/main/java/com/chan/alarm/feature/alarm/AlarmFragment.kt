@@ -19,6 +19,7 @@ import com.chan.alarm.feature.database.domain.data.Alarm
 import com.chan.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class AlarmFragment : BaseFragment<FragmentAlarmBinding>(
@@ -33,10 +34,10 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initViewData()
         initViewModel()
         initViewModelObserve()
         initListener()
+        initViewData()
 
     }
 
@@ -67,8 +68,9 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(
 
     private fun initViewData() = lifecycleScope.launch {
         val alarmId: Int? = arguments?.getInt(DEEP_LINK_ID)
+        Timber.d(">>>> initViewData alarmId $alarmId")
         alarmId?.run {
-            alarmViewModel.notiAlarmInfo(alarmId)
+            alarmViewModel.selectAlarm(alarmId)
         }
     }
 
@@ -93,8 +95,8 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         stopRingtone()
+        super.onDestroyView()
     }
 
     companion object {

@@ -81,10 +81,11 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
                         isAlarm = true,
                         ringtoneUri = alarmVo.ringtoneUri
                     )
-                    alarmViewModel.addAlarm(alarm)
+                    val selectedAlarm = alarmViewModel.addAlarm(alarm)
+                    Timber.d("selectedAlarm >>>>>>>> ${selectedAlarm.id}")
                     AlarmEvent.addBroadCastAlarmManager(
                         binding.btnSave.context,
-                        alarmViewModel.getAlarm(alarm.alarmName)
+                        selectedAlarm
                     )
                     alarmViewModel.selectAlarmList()
                     binding.btnSave.findNavController().popBackStack()

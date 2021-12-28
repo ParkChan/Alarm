@@ -17,7 +17,7 @@
         - 시간대 알림
 - [MediaPlayer 가이드](https://developer.android.com/guide/topics/media/mediaplayer)
 - [RingToneManager 가이드](https://developer.android.com/reference/kotlin/android/media/RingtoneManager)
-
+- [암시적 브로드 캐스트 예외](https://developer.android.com/guide/components/broadcast-exceptions)
 - 재생은 MediaPlayer, RingToneManager 가 있는것으로 확인됨
     - 링톤 타입의 아이템을 재생할 것이기에 RingToneManager를 사용하기로 선택
 
