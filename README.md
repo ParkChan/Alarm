@@ -51,6 +51,10 @@
 - 알람매니저 기능 테스트
 - [리마인드 알림] UI 구현
 
+### 예제 화면
+![ezgif-3-18ef57df60](https://user-images.githubusercontent.com/7857824/147532181-9585b0ab-f2fe-4e33-a5aa-0e938d5d0b7f.gif)
+
+
 ### 기타
 - (이미지 사용)[https://fonts.google.com/icons?selected=Material+Icons]
 
