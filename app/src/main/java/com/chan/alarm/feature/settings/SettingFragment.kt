@@ -16,12 +16,12 @@ import com.chan.alarm.common.ui.TimeUtil
 import com.chan.alarm.common.ui.TimeUtil.convertAlarmTimeMills
 import com.chan.alarm.databinding.FragmentSettingsBinding
 import com.chan.alarm.feature.database.domain.data.Alarm
-import com.chan.alarm.feature.database.domain.usecase.AlarmDataBaseUseCase
 import com.chan.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.util.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingsBinding>(
@@ -36,9 +36,10 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
             alarmVo.ringtoneUri = it.toString()
         }
     }
+    private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
+        Timber.e(exception.message)
+    }
 
-    @Inject
-    lateinit var alarmDataBaseUseCase: AlarmDataBaseUseCase
     private val alarmVo = AlarmVo()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,7 +69,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
 
     private fun initListener() {
         binding.btnSave.setOnClickListener {
-            lifecycleScope.launch {
+            lifecycleScope.launch(coroutineExceptionHandler) {
                 if (isValidationCheck()) {
                     val remindName = binding.etRemindName.text.toString()
                     val hour = binding.tpRemindTime.hour
@@ -80,16 +81,16 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
                         isAlarm = true,
                         ringtoneUri = alarmVo.ringtoneUri
                     )
-                    alarmDataBaseUseCase.insert(alarm)
-                    alarmDataBaseUseCase.selectAlarmName(alarm.alarmName).getOrNull()?.let {
-                        AlarmEvent.addBroadCastAlarmManager(binding.btnSave.context, it)
-                        binding.btnSave.findNavController().popBackStack()
-                    }
+                    alarmViewModel.addAlarm(alarm)
+                    AlarmEvent.addBroadCastAlarmManager(
+                        binding.btnSave.context,
+                        alarmViewModel.getAlarm(alarm.alarmName)
+                    )
+                    binding.btnSave.findNavController().popBackStack()
                     alarmViewModel.selectAlarmList()
                 }
             }
         }
-
         binding.viewBgRingtone.setOnClickListener {
             resultLauncher.launch(alarmVo.getUri())
         }
@@ -113,7 +114,5 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
             }
         }
     }
-
-
 }
 

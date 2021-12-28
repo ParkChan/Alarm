@@ -10,6 +10,7 @@ import com.chan.alarm.feature.database.domain.usecase.AlarmDataBaseUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -20,6 +21,9 @@ class AlarmViewModel @Inject constructor(
 
     private val _alarms = MutableLiveData<List<Alarm>>()
     val alarms: LiveData<List<Alarm>> get() = _alarms
+
+    private val _displayAlarm = MutableLiveData<Alarm>()
+    val displayAlarm: LiveData<Alarm> get() = _displayAlarm
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
         Timber.e(exception.message)
@@ -41,6 +45,25 @@ class AlarmViewModel @Inject constructor(
     private fun updateAlarm(alarm: Alarm) =
         viewModelScope.launch(coroutineExceptionHandler) {
             alarmDataBaseUseCase.update(alarm)
+        }
+
+    suspend fun notiAlarmInfo(alarmId: Int) =
+        viewModelScope.launch(coroutineExceptionHandler) {
+            _displayAlarm.value = alarmDataBaseUseCase.selectId(alarmId).getOrNull()
+        }
+
+    suspend fun offAlarmInfo(alarm: Alarm) =
+        viewModelScope.launch(coroutineExceptionHandler) {
+            alarmDataBaseUseCase.update(alarm.apply { isAlarm = false })
+        }
+
+    fun addAlarm(alarm: Alarm) = viewModelScope.launch(coroutineExceptionHandler) {
+        alarmDataBaseUseCase.insert(alarm)
+    }
+
+    suspend fun getAlarm(alarmName: String) =
+        withContext(viewModelScope.coroutineContext) {
+            alarmDataBaseUseCase.selectAlarmName(alarmName).getOrNull() ?: Alarm()
         }
 
     fun onClickCheckBox(context: Context, isCheck: Boolean, alarm: Alarm) {

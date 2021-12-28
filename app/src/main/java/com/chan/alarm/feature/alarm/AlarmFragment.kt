@@ -16,11 +16,9 @@ import com.chan.alarm.common.ui.TimeUtil
 import com.chan.alarm.common.ui.TimeUtil.FORMAT_TYPE_HH_MM
 import com.chan.alarm.databinding.FragmentAlarmBinding
 import com.chan.alarm.feature.database.domain.data.Alarm
-import com.chan.alarm.feature.database.domain.usecase.AlarmDataBaseUseCase
 import com.chan.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class AlarmFragment : BaseFragment<FragmentAlarmBinding>(
@@ -28,9 +26,6 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(
 ), RingtoneAction {
 
     private val alarmViewModel by activityViewModels<AlarmViewModel>()
-
-    @Inject
-    lateinit var alarmDataBaseUseCase: AlarmDataBaseUseCase
 
     private lateinit var ringtone: Ringtone
     private lateinit var alarm: Alarm
@@ -40,6 +35,7 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(
 
         initViewData()
         initViewModel()
+        initViewModelObserve()
         initListener()
 
     }
@@ -57,21 +53,27 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(
         binding.alarmViewModel = alarmViewModel
     }
 
-    private fun initViewData() = lifecycleScope.launch {
-        val alarmId: Int? = arguments?.getInt(DEEP_LINK_ID)
-        alarmId?.run {
-            alarm = alarmDataBaseUseCase.selectId(alarmId).getOrNull() ?: Alarm()
+    private fun initViewModelObserve() {
+        alarmViewModel.displayAlarm.observe(viewLifecycleOwner, {
+            alarm = it
             alarm.run {
                 binding.tvRemindName.text = alarmName
                 binding.tvRemindTime.text =
                     TimeUtil.convertAlarmDisplayTime(FORMAT_TYPE_HH_MM, timeStamp)
                 startRingtone(binding.root.context, ringtoneUri.toUri())
             }
+        })
+    }
+
+    private fun initViewData() = lifecycleScope.launch {
+        val alarmId: Int? = arguments?.getInt(DEEP_LINK_ID)
+        alarmId?.run {
+            alarmViewModel.notiAlarmInfo(alarmId)
         }
     }
 
     private fun dismissAlarm() = lifecycleScope.launch {
-        alarmDataBaseUseCase.update(alarm.apply { isAlarm = false })
+        alarmViewModel.offAlarmInfo(alarm)
         val action = AlarmFragmentDirections.actionAlarmFragmentToAlarmListFragmentGraph()
         binding.btnDismiss.findNavController().navigate(action)
         AlarmEvent.cancelBroadCastAlarmManager(binding.btnDismiss.context, alarm.id)
