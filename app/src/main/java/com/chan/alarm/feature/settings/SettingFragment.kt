@@ -12,6 +12,7 @@ import com.chan.alarm.R
 import com.chan.alarm.common.ui.AlarmEvent
 import com.chan.alarm.common.ui.util.SnackbarUtil
 import com.chan.alarm.common.ui.util.TimeUtil
+import com.chan.alarm.common.ui.util.TimeUtil.dayTimeInMillis
 import com.chan.alarm.common.ui.util.TimeUtil.nextDayTimeInMillis
 import com.chan.alarm.common.ui.viewmodel.AlarmViewModel
 import com.chan.alarm.databinding.FragmentSettingsBinding
@@ -75,9 +76,16 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
                     val hour = binding.tpRemindTime.hour
                     val minute = binding.tpRemindTime.minute
 
+                    val dayTimeInMillis = dayTimeInMillis(hour, minute)
+
                     val alarm = Alarm(
                         alarmName = remindName,
-                        timeStamp = nextDayTimeInMillis(hour, minute),
+                        timeStamp = if (
+                            TimeUtil.isBeforeTimeInMillis(dayTimeInMillis)) {
+                            nextDayTimeInMillis(dayTimeInMillis)
+                        } else {
+                            dayTimeInMillis
+                        },
                         enableAlarm = true,
                         ringtoneUri = alarmVo.ringtoneUri
                     )
