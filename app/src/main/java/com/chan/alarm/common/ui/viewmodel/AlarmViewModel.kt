@@ -75,7 +75,7 @@ class AlarmViewModel @Inject constructor(
 
     fun onClickCheckBox(context: Context, isChecked: Boolean, alarm: Alarm) =
         viewModelScope.launch(coroutineExceptionHandler) {
-            Timber.d("onClickCheckBox alarm $alarm")
+            Timber.d(">>> onClickCheckBox alarm $alarm")
             val alarmData = alarm.apply {
                 enableAlarm = isChecked
                 timeStamp = if (isChecked) {

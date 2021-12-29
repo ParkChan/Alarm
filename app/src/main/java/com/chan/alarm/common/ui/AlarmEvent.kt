@@ -12,6 +12,7 @@ import timber.log.Timber
 object AlarmEvent {
 
     fun addBroadCastAlarmManager(context: Context, alarm: Alarm) {
+        Timber.d("addBroadCastAlarmManager alarm >>> $alarm")
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
         intent.action = AlarmReceiver.ACTION_NAME
@@ -41,7 +42,7 @@ object AlarmEvent {
         val pendingIntent =
             PendingIntent.getBroadcast(context, alarmId, intent, PendingIntent.FLAG_NO_CREATE)
         pendingIntent?.let{
-            Timber.d("cancelBroadCastAlarmManager >>>>>>>> $alarmId")
+            Timber.d("cancelBroadCastAlarmManager alarmId >>> $alarmId")
             alarmManager.cancel(it)
             it.cancel()
         }

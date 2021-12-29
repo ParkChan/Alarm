@@ -15,7 +15,7 @@ class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
         val action = intent?.action ?: ""
         if (action == ACTION_NAME) {
-            Timber.d(">>>>>> onReceive action name $action")
+            Timber.d(">>> onReceive action name $action")
             wakeLock(context)
             moveAlarmFragment(context, intent)
         }
@@ -34,7 +34,7 @@ class AlarmReceiver : BroadcastReceiver() {
     private fun moveAlarmFragment(context: Context, intent: Intent?) {
         val bundle = intent?.extras
         val alarmId: Int? = bundle?.getInt(BUNDLE_KEY_ALARM_ID)
-        Timber.d(">>>>>> onReceive $alarmId")
+        Timber.d(">>> onReceive $alarmId")
         alarmId?.let {
             val alarmIntent = Intent(context, MainActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

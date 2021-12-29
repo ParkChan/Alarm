@@ -7,17 +7,35 @@ import org.junit.jupiter.api.Test
 
 class TimeUtilTest {
 
+    private val hour = 18
+    private val minute = 50
+    private val timeInMillis = TimeUtil.dayTimeInMillis(hour, minute)
+
     @Test
-    fun `시간과 분을 전달받아 캘린더 객체로 변환하는 테스트`() {
-        val hour1 = 18
-        val minute1 = 50
-        val timeInMillis1 = TimeUtil.dayTimeInMillis(hour1, minute1)
+    fun `사용자 UI FORMAT 으로 변환하는 테스트`() {
+        assertEquals(
+            "18:50 오후",
+            TimeUtil.convertAlarmDisplayTime(FORMAT_TYPE_HH_MM_AA, timeInMillis)
+        )
+    }
 
-        val hour2 = 1
-        val minute2 = 50
-        val timeInMillis2 = TimeUtil.dayTimeInMillis(hour2, minute2)
+    @Test
+    fun `현재 날짜를 확인하고 하루를 더하는 기능 테스트`() {
+        assertEquals(
+            "2021-12-29 18:50 오후",
+            TimeUtil.convertAlarmDisplayTime(FORMAT_TYPE_YYYY_MM_DD_HH_MM_AA, timeInMillis)
+        )
 
-        assertEquals("18:50 오후", TimeUtil.convertAlarmDisplayTime(FORMAT_TYPE_HH_MM_AA, timeInMillis1))
-        assertEquals("01:50 오전", TimeUtil.convertAlarmDisplayTime(FORMAT_TYPE_HH_MM_AA, timeInMillis2))
+        assertEquals(
+            "2021-12-30 18:50 오후",
+            TimeUtil.convertAlarmDisplayTime(
+                FORMAT_TYPE_YYYY_MM_DD_HH_MM_AA,
+                TimeUtil.nextDayTimeInMillis(timeInMillis)
+            )
+        )
+    }
+
+    companion object {
+        private const val FORMAT_TYPE_YYYY_MM_DD_HH_MM_AA = "yyyy-MM-dd HH:mm aa"
     }
 }

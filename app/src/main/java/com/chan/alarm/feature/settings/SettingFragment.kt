@@ -91,7 +91,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
                     )
                     alarmViewModel.addAlarm(alarm)
                     val selectedAlarm = alarmViewModel.selectAlarmName(alarm.alarmName)
-                    Timber.d("selectedAlarm >>> ${selectedAlarm.id}")
+                    Timber.d(">>> selectedAlarm ${selectedAlarm}")
                     AlarmEvent.addBroadCastAlarmManager(
                         binding.btnSave.context,
                         selectedAlarm

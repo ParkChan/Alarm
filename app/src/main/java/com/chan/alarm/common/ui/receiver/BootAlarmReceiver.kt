@@ -33,7 +33,7 @@ class BootAlarmReceiver : BroadcastReceiver() {
                     alarmDataBaseUseCase.select().onSuccess { alarmList ->
                         alarmList.forEach {
                             if (it.enableAlarm) {
-                                Timber.d(">>>>>> BootAlarmReceiver addAlarm $it")
+                                Timber.d(">>> BootAlarmReceiver addAlarm $it")
                                 AlarmEvent.addBroadCastAlarmManager(context, it)
                             }
                         }

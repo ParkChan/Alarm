@@ -13,7 +13,6 @@ import com.chan.ui.BR
 import com.chan.ui.BaseFragment
 import com.chan.ui.adapter.BaseListAdapter
 import com.chan.ui.livedata.observeEvent
-import timber.log.Timber
 
 class AlarmListFragment : BaseFragment<FragmentAlarmListBinding>(
     FragmentAlarmListBinding::inflate
@@ -72,13 +71,11 @@ class AlarmListFragment : BaseFragment<FragmentAlarmListBinding>(
     private fun initViewModelObserve() {
         alarmViewModel.alarms.observeEvent(
             lifecycleOwner = viewLifecycleOwner, observer = {
-                Timber.d(">>>> initViewModelObserve $it")
                 listAdapter.submitList(it)
             })
     }
 
     private fun initViewData() {
-        Timber.d(">>>>  initViewData")
         alarmViewModel.selectAlarmList()
     }
 
