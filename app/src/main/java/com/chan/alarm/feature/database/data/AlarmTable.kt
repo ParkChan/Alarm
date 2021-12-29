@@ -10,7 +10,7 @@ data class AlarmTable(
     val id: Int = 0,
     val alarmName: String,
     val timeStamp: Long,
-    val isAlarm: Boolean,
+    val enableAlarm: Boolean,
     val ringtoneUri: String
 ) : MapToDomain<Alarm> {
     override fun mapToDomain(): Alarm =
@@ -18,7 +18,7 @@ data class AlarmTable(
             id = id,
             alarmName = alarmName,
             timeStamp = timeStamp,
-            isAlarm = isAlarm,
+            enableAlarm = enableAlarm,
             ringtoneUri = ringtoneUri
         )
 }

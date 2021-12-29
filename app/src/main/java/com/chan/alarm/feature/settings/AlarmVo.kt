@@ -10,7 +10,7 @@ data class AlarmVo(
     var id: Int = 0,
     var alarmName: String = "",
     var timeStamp: Long = 0L,
-    var isAlarm: Boolean = false,
+    var enableAlarm: Boolean = false,
     var ringtoneUri: String = ""
 ) : Parcelable {
     fun getUri(): Uri = ringtoneUri.toUri()

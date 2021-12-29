@@ -31,7 +31,7 @@ class AlarmViewModelTest {
             id = ID,
             alarmName = ALARM_NAME,
             timeStamp = TIME_STAMP,
-            isAlarm = IS_ALARM,
+            enableAlarm = ENABLE_ALARM,
             ringtoneUri = RINGTONE_URI
         )
 
@@ -52,7 +52,7 @@ class AlarmViewModelTest {
     companion object {
         private const val ID = 1
         private const val ALARM_NAME = "미팅"
-        private const val IS_ALARM = true
+        private const val ENABLE_ALARM = true
         private const val TIME_STAMP = 0L
         private const val RINGTONE_URI = ""
     }

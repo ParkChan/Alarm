@@ -31,7 +31,7 @@ class AlarmRepositoryImpl @Inject constructor(
                 id = alarm.id,
                 alarmName = alarm.alarmName,
                 timeStamp = alarm.timeStamp,
-                isAlarm = alarm.isAlarm,
+                enableAlarm = alarm.enableAlarm,
                 ringtoneUri = alarm.ringtoneUri
             )
 

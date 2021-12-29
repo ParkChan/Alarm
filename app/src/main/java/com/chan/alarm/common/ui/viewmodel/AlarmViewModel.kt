@@ -66,7 +66,7 @@ class AlarmViewModel @Inject constructor(
 
     suspend fun offAlarm(alarm: Alarm) =
         viewModelScope.launch(coroutineExceptionHandler) {
-            alarmDataBaseUseCase.update(alarm.apply { isAlarm = false })
+            alarmDataBaseUseCase.update(alarm.apply { enableAlarm = false })
         }
 
     suspend fun addAlarm(alarm: Alarm) = viewModelScope.launch(coroutineExceptionHandler) {
@@ -75,8 +75,9 @@ class AlarmViewModel @Inject constructor(
 
     fun onClickCheckBox(context: Context, isChecked: Boolean, alarm: Alarm) =
         viewModelScope.launch(coroutineExceptionHandler) {
+            Timber.d("onClickCheckBox alarm $alarm")
             val alarmData = alarm.apply {
-                isAlarm = isChecked
+                enableAlarm = isChecked
                 timeStamp = if (isChecked) {
                     if (TimeUtil.isBeforeTimeInMillis(timeStamp)) {
                         TimeUtil.nextDayTimeInMillis(timeStamp)

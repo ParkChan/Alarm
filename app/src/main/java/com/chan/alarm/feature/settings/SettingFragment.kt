@@ -78,13 +78,12 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
                     val alarm = Alarm(
                         alarmName = remindName,
                         timeStamp = nextDayTimeInMillis(hour, minute),
-                        isAlarm = true,
+                        enableAlarm = true,
                         ringtoneUri = alarmVo.ringtoneUri
                     )
                     alarmViewModel.addAlarm(alarm)
                     val selectedAlarm = alarmViewModel.selectAlarmName(alarm.alarmName)
-
-                    Timber.d("selectedAlarm >>>>>>>> ${selectedAlarm.id}")
+                    Timber.d("selectedAlarm >>> ${selectedAlarm.id}")
                     AlarmEvent.addBroadCastAlarmManager(
                         binding.btnSave.context,
                         selectedAlarm

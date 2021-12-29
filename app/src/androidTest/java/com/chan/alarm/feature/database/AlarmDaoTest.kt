@@ -23,7 +23,7 @@ class AlarmDaoTest : AlarmBaseTest() {
         val alarmTable = AlarmTable(
             alarmName = "회의",
             timeStamp = timeStamp,
-            isAlarm = false,
+            enableAlarm = false,
             ringtoneUri = ""
         )
         alarmDao.insert(alarmTable)
@@ -32,7 +32,7 @@ class AlarmDaoTest : AlarmBaseTest() {
         assertEquals(ALARM_ID, alarm[0].id)
         assertEquals(ALARM_NAME, alarm[0].alarmName)
         assertEquals(timeStamp, alarm[0].timeStamp)
-        assertEquals(IS_ALARM, alarm[0].isAlarm)
+        assertEquals(IS_ALARM, alarm[0].enableAlarm)
         assertEquals(RINGTONE_URI, alarm[0].ringtoneUri)
     }
 

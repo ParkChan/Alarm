@@ -32,7 +32,7 @@ class BootAlarmReceiver : BroadcastReceiver() {
                 coroutineScope.launch(coroutineExceptionHandler) {
                     alarmDataBaseUseCase.select().onSuccess { alarmList ->
                         alarmList.forEach {
-                            if (it.isAlarm) {
+                            if (it.enableAlarm) {
                                 Timber.d(">>>>>> BootAlarmReceiver addAlarm $it")
                                 AlarmEvent.addBroadCastAlarmManager(context, it)
                             }
