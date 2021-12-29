@@ -58,6 +58,14 @@
 ### 기타
 - (이미지 사용)[https://fonts.google.com/icons?selected=Material+Icons]
 
+### 회고
+- 네비게이션 컴포넌트의 활용
+- 알람 등록/해제(AlarmManager, PendingIntent)
+- 알람이 울리는 조건
+	- 알람시간이 현재시간보다 이전이면 바로 울리기 때문에 +1 Day가 필요함
+- BroadCastReceiver action 처리
+- 사용자 디바이스 재부팅시 알람 재등록 관련 [암시적 브로드 캐스트 예외](https://developer.android.com/guide/components/broadcast-exceptions)
+
 
 ### 네비게이션 컴포넌트 관련 참고자료
 ---
