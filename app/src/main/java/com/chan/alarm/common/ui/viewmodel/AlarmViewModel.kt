@@ -50,7 +50,7 @@ class AlarmViewModel @Inject constructor(
             alarmDataBaseUseCase.update(alarm)
         }
 
-    suspend fun selectAlarm(alarmId: Int) =
+    suspend fun selectAlarmId(alarmId: Int) =
         viewModelScope.launch(coroutineExceptionHandler) {
             _displayAlarm.value =
                 Event(
@@ -58,14 +58,19 @@ class AlarmViewModel @Inject constructor(
                 )
         }
 
-    suspend fun offAlarmInfo(alarm: Alarm) =
+    suspend fun selectAlarmName(alarmName: String): Alarm = withContext(
+        viewModelScope.coroutineContext
+    ) {
+        alarmDataBaseUseCase.selectAlarmName(alarmName).getOrNull() ?: Alarm()
+    }
+
+    suspend fun offAlarm(alarm: Alarm) =
         viewModelScope.launch(coroutineExceptionHandler) {
             alarmDataBaseUseCase.update(alarm.apply { isAlarm = false })
         }
 
-    suspend fun addAlarm(alarm: Alarm): Alarm = withContext(viewModelScope.coroutineContext) {
+    suspend fun addAlarm(alarm: Alarm) = viewModelScope.launch(coroutineExceptionHandler) {
         alarmDataBaseUseCase.insert(alarm)
-        alarmDataBaseUseCase.selectAlarmName(alarm.alarmName).getOrNull() ?: Alarm()
     }
 
     fun onClickCheckBox(context: Context, isChecked: Boolean, alarm: Alarm) =

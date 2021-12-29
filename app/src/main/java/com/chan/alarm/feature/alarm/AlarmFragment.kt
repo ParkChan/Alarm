@@ -72,12 +72,12 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(
         val alarmId: Int? = arguments?.getInt(DEEP_LINK_ID)
         Timber.d(">>>> initViewData alarmId $alarmId")
         alarmId?.run {
-            alarmViewModel.selectAlarm(alarmId)
+            alarmViewModel.selectAlarmId(alarmId)
         }
     }
 
     private fun dismissAlarm() = lifecycleScope.launch {
-        alarmViewModel.offAlarmInfo(alarm)
+        alarmViewModel.offAlarm(alarm)
         val action = AlarmFragmentDirections.actionAlarmFragmentToAlarmListFragmentGraph()
         binding.btnDismiss.findNavController().navigate(action)
         AlarmEvent.cancelBroadCastAlarmManager(binding.btnDismiss.context, alarm.id)
