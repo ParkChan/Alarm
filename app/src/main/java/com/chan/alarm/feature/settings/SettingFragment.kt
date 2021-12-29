@@ -12,7 +12,7 @@ import com.chan.alarm.R
 import com.chan.alarm.common.ui.AlarmEvent
 import com.chan.alarm.common.ui.util.SnackbarUtil
 import com.chan.alarm.common.ui.util.TimeUtil
-import com.chan.alarm.common.ui.util.TimeUtil.nextDayTimeMills
+import com.chan.alarm.common.ui.util.TimeUtil.nextDayTimeInMillis
 import com.chan.alarm.common.ui.viewmodel.AlarmViewModel
 import com.chan.alarm.databinding.FragmentSettingsBinding
 import com.chan.alarm.feature.database.domain.data.Alarm
@@ -77,7 +77,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
 
                     val alarm = Alarm(
                         alarmName = remindName,
-                        timeStamp = nextDayTimeMills(hour, minute),
+                        timeStamp = nextDayTimeInMillis(hour, minute),
                         isAlarm = true,
                         ringtoneUri = alarmVo.ringtoneUri
                     )

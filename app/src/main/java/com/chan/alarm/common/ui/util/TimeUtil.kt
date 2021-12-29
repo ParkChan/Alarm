@@ -10,7 +10,7 @@ object TimeUtil {
     const val FORMAT_TYPE_HH_MM = "HH:mm"
     private val timeZone = TimeZone.getDefault()
 
-    fun nextDayTimeMills(hour: Int, minute: Int): Long {
+    fun nextDayTimeInMillis(hour: Int, minute: Int): Long {
         return Calendar.getInstance(timeZone).apply {
             set(Calendar.HOUR_OF_DAY, hour)
             set(Calendar.MINUTE, minute)
@@ -20,12 +20,13 @@ object TimeUtil {
         }.timeInMillis
     }
 
-    fun isYesterday(timeStamp: Long): Boolean {
+    fun isBeforeTimeInMillis(timeStamp: Long): Boolean {
         return Calendar.getInstance().timeInMillis > timeStamp
     }
 
-    fun nextDayTimeMills(timeStamp: Long): Long {
+    fun nextDayTimeInMillis(timeStamp: Long): Long {
         return Calendar.getInstance(timeZone).apply {
+            timeInMillis = timeStamp
             add(Calendar.DATE, NEXT_DAY)
         }.timeInMillis
     }

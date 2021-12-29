@@ -73,10 +73,10 @@ class AlarmViewModel @Inject constructor(
             val alarmData = alarm.apply { isAlarm = isCheck }
             updateAlarm(alarmData)
             if (isCheck) {
-                if (TimeUtil.isYesterday(alarmData.timeStamp)) {
+                if (TimeUtil.isBeforeTimeInMillis(alarmData.timeStamp)) {
                     alarmDataBaseUseCase.update(
                         alarmData.apply {
-                            timeStamp = TimeUtil.nextDayTimeMills(timeStamp)
+                            timeStamp = TimeUtil.nextDayTimeInMillis(timeStamp)
                         }
                     )
                     AlarmEvent.addBroadCastAlarmManager(context, alarmData)
