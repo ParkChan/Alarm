@@ -35,6 +35,21 @@ class TimeUtilTest {
         )
     }
 
+    @Test
+    fun `이전 timeInMillis 인지 비교하는 테스트`() {
+
+        val alarmHour = 17
+        val alarmMinute = 50
+
+        assertEquals(
+            true,
+            TimeUtil.isBeforeTimeInMillis(
+                defaultTimeInMillis = timeInMillis,
+                userTimeInMillis = TimeUtil.dayTimeInMillis(alarmHour, alarmMinute)
+            )
+        )
+    }
+
     companion object {
         private const val FORMAT_TYPE_YYYY_MM_DD_HH_MM_AA = "yyyy-MM-dd HH:mm aa"
     }

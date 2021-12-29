@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -79,7 +80,11 @@ class AlarmViewModel @Inject constructor(
             val alarmData = alarm.apply {
                 enableAlarm = isChecked
                 timeStamp = if (isChecked) {
-                    if (TimeUtil.isBeforeTimeInMillis(timeStamp)) {
+                    if (TimeUtil.isBeforeTimeInMillis(
+                            Calendar.getInstance().timeInMillis,
+                            timeStamp
+                        )
+                    ) {
                         TimeUtil.nextDayTimeInMillis(timeStamp)
                     } else {
                         timeStamp

@@ -17,8 +17,8 @@ object TimeUtil {
         }.timeInMillis
     }
 
-    fun isBeforeTimeInMillis(timeStamp: Long): Boolean =
-        Calendar.getInstance().timeInMillis > timeStamp
+    fun isBeforeTimeInMillis(defaultTimeInMillis: Long, userTimeInMillis: Long): Boolean =
+        defaultTimeInMillis > userTimeInMillis
 
     fun nextDayTimeInMillis(timeStamp: Long): Long =
         Calendar.getInstance(timeZone).apply {

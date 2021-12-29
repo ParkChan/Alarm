@@ -81,7 +81,11 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
                     val alarm = Alarm(
                         alarmName = remindName,
                         timeStamp = if (
-                            TimeUtil.isBeforeTimeInMillis(dayTimeInMillis)) {
+                            TimeUtil.isBeforeTimeInMillis(
+                                Calendar.getInstance().timeInMillis,
+                                dayTimeInMillis
+                            )
+                        ) {
                             nextDayTimeInMillis(dayTimeInMillis)
                         } else {
                             dayTimeInMillis
