@@ -68,21 +68,24 @@ class AlarmViewModel @Inject constructor(
         alarmDataBaseUseCase.selectAlarmName(alarm.alarmName).getOrNull() ?: Alarm()
     }
 
-    fun onClickCheckBox(context: Context, isCheck: Boolean, alarm: Alarm) =
+    fun onClickCheckBox(context: Context, isChecked: Boolean, alarm: Alarm) =
         viewModelScope.launch(coroutineExceptionHandler) {
-            val alarmData = alarm.apply { isAlarm = isCheck }
-            updateAlarm(alarmData)
-            if (isCheck) {
-                if (TimeUtil.isBeforeTimeInMillis(alarmData.timeStamp)) {
-                    alarmDataBaseUseCase.update(
-                        alarmData.apply {
-                            timeStamp = TimeUtil.nextDayTimeInMillis(timeStamp)
-                        }
-                    )
-                    AlarmEvent.addBroadCastAlarmManager(context, alarmData)
+            val alarmData = alarm.apply {
+                isAlarm = isChecked
+                timeStamp = if (isChecked) {
+                    if (TimeUtil.isBeforeTimeInMillis(timeStamp)) {
+                        TimeUtil.nextDayTimeInMillis(timeStamp)
+                    } else {
+                        timeStamp
+                    }
                 } else {
-                    AlarmEvent.addBroadCastAlarmManager(context, alarmData)
+                    timeStamp
                 }
+            }
+            updateAlarm(alarmData)
+
+            if (isChecked) {
+                AlarmEvent.addBroadCastAlarmManager(context, alarmData)
             } else {
                 AlarmEvent.cancelBroadCastAlarmManager(context, alarmData.id)
             }
