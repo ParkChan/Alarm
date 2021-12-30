@@ -8,17 +8,17 @@ import com.chan.alarm.feature.database.domain.data.Alarm
 data class AlarmTable(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val alarmName: String,
+    val name: String,
     val timeStamp: Long,
-    val enableAlarm: Boolean,
+    val enable: Boolean,
     val ringtoneUri: String
 ) : MapToDomain<Alarm> {
     override fun mapToDomain(): Alarm =
         Alarm(
             id = id,
-            alarmName = alarmName,
+            name = name,
             timeStamp = timeStamp,
-            enableAlarm = enableAlarm,
+            enable = enable,
             ringtoneUri = ringtoneUri
         )
 }

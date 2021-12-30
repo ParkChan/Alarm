@@ -29,9 +29,9 @@ class AlarmRepositoryImpl @Inject constructor(
         private fun mapToAlarmTable(alarm: Alarm) =
             AlarmTable(
                 id = alarm.id,
-                alarmName = alarm.alarmName,
+                name = alarm.name,
                 timeStamp = alarm.timeStamp,
-                enableAlarm = alarm.enableAlarm,
+                enable = alarm.enable,
                 ringtoneUri = alarm.ringtoneUri
             )
 

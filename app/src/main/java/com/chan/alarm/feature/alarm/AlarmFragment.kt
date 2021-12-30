@@ -60,7 +60,7 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(
             lifecycleOwner = viewLifecycleOwner, observer = {
                 alarm = it
                 alarm.run {
-                    binding.tvRemindName.text = alarmName
+                    binding.tvRemindName.text = name
                     binding.tvRemindTime.text =
                         TimeUtil.convertAlarmDisplayTime(FORMAT_TYPE_HH_MM, timeStamp)
                     startRingtone(binding.root.context, ringtoneUri.toUri())

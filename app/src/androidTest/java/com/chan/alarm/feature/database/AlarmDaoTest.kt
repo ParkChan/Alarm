@@ -21,18 +21,18 @@ class AlarmDaoTest : AlarmBaseTest() {
     fun writeAlarmAndRead() = runBlocking {
         val timeStamp = System.currentTimeMillis()
         val alarmTable = AlarmTable(
-            alarmName = "회의",
+            name = "회의",
             timeStamp = timeStamp,
-            enableAlarm = false,
+            enable = false,
             ringtoneUri = ""
         )
         alarmDao.insert(alarmTable)
         val alarm = alarmDao.select()
 
         assertEquals(ALARM_ID, alarm[0].id)
-        assertEquals(ALARM_NAME, alarm[0].alarmName)
+        assertEquals(ALARM_NAME, alarm[0].name)
         assertEquals(timeStamp, alarm[0].timeStamp)
-        assertEquals(IS_ALARM, alarm[0].enableAlarm)
+        assertEquals(IS_ALARM, alarm[0].enable)
         assertEquals(RINGTONE_URI, alarm[0].ringtoneUri)
     }
 

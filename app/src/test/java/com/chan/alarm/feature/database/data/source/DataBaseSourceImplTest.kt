@@ -22,9 +22,9 @@ class DataBaseSourceImplTest {
     fun `알람정보를 저장 합니다`() = runBlocking {
         val alarmTable = AlarmTable(
             ID,
-            alarmName = ALARM_NAME,
+            name = ALARM_NAME,
             timeStamp = TIME_STAMP,
-            enableAlarm = ENABLE_ALARM,
+            enable = ENABLE_ALARM,
             ringtoneUri = RINGTONE_URI
         )
         dataBaseSource.insert(alarmTable)

@@ -29,9 +29,9 @@ class AlarmViewModelTest {
     fun `알람을 저장하고 저장된 알람 리스트를 가져옵니다`() = runBlocking {
         val mockAlarm = Alarm(
             id = ID,
-            alarmName = ALARM_NAME,
+            name = ALARM_NAME,
             timeStamp = TIME_STAMP,
-            enableAlarm = ENABLE_ALARM,
+            enable = ENABLE_ALARM,
             ringtoneUri = RINGTONE_URI
         )
 
