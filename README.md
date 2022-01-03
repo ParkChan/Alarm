@@ -61,7 +61,7 @@
 - 네비게이션 컴포넌트를 잘 활용할 수 있어야 함
 - 알람 등록/해제(AlarmManager, PendingIntent)
 - 알람이 울리는 조건(중요)
-	- 알람시간이 현재시간보다 이전이면 바로 울리기 때문에 알람 재등록시에는 +1 Day가 필요함
+	- 알람 재등록시 현재시간보다 이전이면 바로 울리기 때문에  +1 Day 를 해주어야 함
 - BroadCastReceiver action 처리
 - 사용자 디바이스 재부팅시 알람 재등록 관련 [암시적 브로드 캐스트 예외](https://developer.android.com/guide/components/broadcast-exceptions)
 
