@@ -15,7 +15,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
-import java.util.*
+import java.util.Calendar
 import javax.inject.Inject
 
 @HiltViewModel

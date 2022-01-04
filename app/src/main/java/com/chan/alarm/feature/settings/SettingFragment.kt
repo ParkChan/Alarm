@@ -22,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.util.*
+import java.util.Calendar
 
 @AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingsBinding>(
