@@ -1,5 +1,10 @@
 ## 알람앱 만들기
 
+
+### 적용 기술
+- [어플리케이션 시작 시 구성 요소 초기화](https://developer.android.com/topic/libraries/app-startup)
+    - ![테스트결과](https://user-images.githubusercontent.com/7857824/148049503-aa5f4fa5-8274-47fc-80bf-6961d39f9dea.png)
+
 사고의 흐름 #1,#2,#3
 
 ### 1.기능 구현시 사전 체크 사항
