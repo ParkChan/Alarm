@@ -14,6 +14,7 @@ object Version {
     const val room = "2.3.0"
     const val testCore = "1.3.0"
     const val navigation = "2.3.5"
+    const val startupRuntime = "1.1.0"
 
     const val coroutine = "1.6.0"
 
@@ -106,6 +107,9 @@ object AndroidXConfig {
         "androidx.navigation:navigation-fragment-ktx:${Version.navigation}"
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Version.navigation}"
     const val navigationTesting = "androidx.navigation:navigation-testing:${Version.navigation}"
+
+    const val startupRuntime = "androidx.startup:startup-runtime:${Version.startupRuntime}"
+
 
 }
 

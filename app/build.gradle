@@ -53,6 +53,8 @@ dependencies {
     implementation AndroidXConfig.constraintLayout
     implementation AndroidXConfig.navigationFragmentKtx
     implementation AndroidXConfig.navigationUiKtx
+    implementation AndroidXConfig.startupRuntime
+
     androidTestImplementation AndroidXConfig.navigationTesting
     implementation GoogleConfig.material
 
