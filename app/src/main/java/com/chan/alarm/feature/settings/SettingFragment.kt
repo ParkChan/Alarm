@@ -40,7 +40,6 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
         Timber.e(exception.message)
     }
-
     private val alarmVo = AlarmVo()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -36,5 +36,4 @@ object TimeUtil {
         return simpleDateFormat.format(date)
     }
 
-
 }
