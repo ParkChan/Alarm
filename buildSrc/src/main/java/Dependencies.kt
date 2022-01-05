@@ -15,6 +15,7 @@ object Version {
     const val testCore = "1.3.0"
     const val navigation = "2.3.5"
     const val startupRuntime = "1.1.0"
+    const val coreSplashscreen = "1.0.0-alpha02"
 
     const val coroutine = "1.6.0"
 
@@ -49,7 +50,7 @@ object ProjectConfig {
 }
 
 object AndroidConfig {
-    const val compileSdk = 30
+    const val compileSdk = 31
     const val minSdk = 26
     const val targetSdk = 30
     const val versionCode = 1
@@ -109,7 +110,7 @@ object AndroidXConfig {
     const val navigationTesting = "androidx.navigation:navigation-testing:${Version.navigation}"
 
     const val startupRuntime = "androidx.startup:startup-runtime:${Version.startupRuntime}"
-
+    const val coreSplashscreen = "androidx.core:core-splashscreen:${Version.coreSplashscreen}"
 
 }
 

@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.WindowManager
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.chan.alarm.common.ui.util.SnackbarUtil
 import com.chan.alarm.databinding.ActivityMainBinding
 import com.chan.ui.BaseActivity
@@ -33,8 +34,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
-
         val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1 -> {
@@ -49,7 +50,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             }
         }
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
         requestPermission()
     }
 

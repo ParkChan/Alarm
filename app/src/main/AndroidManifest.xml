@@ -16,7 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Alarm">
 
-        <activity android:name="com.chan.alarm.MainActivity">
+        <activity android:name="com.chan.alarm.MainActivity"
+            android:theme="@style/Theme.App.Starting"
+            android:exported="true">
             <nav-graph android:value="@navigation/navigation_graph" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +49,6 @@
             android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
             tools:node="merge">
-
             <meta-data  android:name="com.chan.alarm.common.startup.TimberInitializer"
                 android:value="androidx.startup" />
         </provider>

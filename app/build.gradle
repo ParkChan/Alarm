@@ -54,12 +54,12 @@ dependencies {
     implementation AndroidXConfig.navigationFragmentKtx
     implementation AndroidXConfig.navigationUiKtx
     implementation AndroidXConfig.startupRuntime
+    implementation AndroidXConfig.coreSplashscreen
+    implementation AndroidXConfig.activityKtx
+    implementation AndroidXConfig.fragmentKtx
 
     androidTestImplementation AndroidXConfig.navigationTesting
     implementation GoogleConfig.material
-
-    implementation AndroidXConfig.activityKtx
-    implementation AndroidXConfig.fragmentKtx
 
     testImplementation TestConfig.junitJupiterApi
     testRuntimeOnly TestConfig.junitJupiterEngine
