@@ -1,7 +1,7 @@
 ## 알람앱 만들기
 
 
-### 기타 적용해기
+### 기타 적용하기
 - [App Startup](https://developer.android.com/topic/libraries/app-startup)
     - ![테스트결과](https://user-images.githubusercontent.com/7857824/148049503-aa5f4fa5-8274-47fc-80bf-6961d39f9dea.png)
 - [splash-screen](https://developer.android.com/guide/topics/ui/splash-screen/migrate)
