@@ -74,6 +74,10 @@ class AlarmViewModel @Inject constructor(
         alarmDataBaseUseCase.insert(alarm)
     }
 
+    fun deleteAlarm(id: Int) = viewModelScope.launch(coroutineExceptionHandler) {
+        alarmDataBaseUseCase.delete(id)
+    }
+
     fun onClickCheckBox(context: Context, isChecked: Boolean, alarm: Alarm) =
         viewModelScope.launch(coroutineExceptionHandler) {
             Timber.d(">>> onClickCheckBox alarm $alarm")

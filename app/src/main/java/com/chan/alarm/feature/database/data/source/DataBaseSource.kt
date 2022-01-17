@@ -10,6 +10,7 @@ interface DataBaseSource {
         get() = Dispatchers.IO
 
     suspend fun insert(alarmTable: AlarmTable)
+    suspend fun delete(id: Int)
     suspend fun select(): List<AlarmTable>
     suspend fun selectId(id: Int): AlarmTable
     suspend fun selectName(name: String): AlarmTable

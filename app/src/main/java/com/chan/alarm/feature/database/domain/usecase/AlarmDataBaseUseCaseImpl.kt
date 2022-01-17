@@ -10,6 +10,10 @@ class AlarmDataBaseUseCaseImpl @Inject constructor(
 
     override suspend fun insert(alarm: Alarm) = repository.insert(alarm)
 
+    override suspend fun delete(id: Int) {
+        repository.delete(id)
+    }
+
     override suspend fun select(): Result<List<Alarm>> = runCatching {
         repository.select()
     }

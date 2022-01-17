@@ -14,6 +14,12 @@ class DataBaseSourceImpl @Inject constructor(
             alarmDao.insert(alarmTable)
         }
 
+    override suspend fun delete(id: Int) {
+        withContext(dispatcher) {
+            alarmDao.delete(id)
+        }
+    }
+
     override suspend fun select(): List<AlarmTable> =
         withContext(dispatcher) {
             alarmDao.select()
