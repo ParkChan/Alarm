@@ -9,9 +9,10 @@ import javax.inject.Inject
 class AlarmRepositoryImpl @Inject constructor(
     private val dataBaseSource: DataBaseSource
 ) : AlarmRepository {
-    override suspend fun insert(alarm: Alarm) {
-        dataBaseSource.insert(mapToAlarmTable(alarm))
-    }
+
+    override suspend fun insert(alarm: Alarm) = dataBaseSource.insert(mapToAlarmTable(alarm))
+
+    override suspend fun delete(id: Int) = dataBaseSource.delete(id)
 
     override suspend fun select(): List<Alarm> =
         dataBaseSource.select().map(AlarmTable::mapToDomain)

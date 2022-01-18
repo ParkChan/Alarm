@@ -16,5 +16,5 @@ interface AlarmDao : BaseDao<AlarmTable> {
     suspend fun selectAlarmName(alarmName: String): AlarmTable
 
     @Query("DELETE FROM alarm WHERE id=:id")
-    suspend fun delete(id: Int): AlarmTable
+    suspend fun delete(id: Int)
 }
