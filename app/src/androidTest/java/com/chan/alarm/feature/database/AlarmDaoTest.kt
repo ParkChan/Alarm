@@ -1,7 +1,7 @@
 package com.chan.alarm.feature.database
 
-import com.chan.alarm.feature.database.data.AlarmDao
-import com.chan.alarm.feature.database.data.AlarmTable
+import com.chan.alarm.feature.data.AlarmDao
+import com.chan.alarm.feature.data.AlarmTable
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach

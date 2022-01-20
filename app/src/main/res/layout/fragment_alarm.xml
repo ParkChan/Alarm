@@ -7,7 +7,7 @@
 
         <variable
             name="alarm"
-            type="com.chan.alarm.feature.database.domain.data.Alarm" />
+            type="com.chan.alarm.feature.domain.data.Alarm" />
 
         <variable
             name="alarmViewModel"

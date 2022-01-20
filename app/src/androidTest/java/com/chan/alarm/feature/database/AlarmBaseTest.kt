@@ -3,7 +3,7 @@ package com.chan.alarm.feature.database
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import com.chan.alarm.feature.database.data.AlarmDatabase
+import com.chan.alarm.feature.data.AlarmDatabase
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import java.util.concurrent.Executors

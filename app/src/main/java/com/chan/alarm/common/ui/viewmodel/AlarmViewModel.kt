@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chan.alarm.common.ui.AlarmEvent
 import com.chan.alarm.common.ui.util.TimeUtil
-import com.chan.alarm.feature.database.domain.data.Alarm
-import com.chan.alarm.feature.database.domain.usecase.AlarmDataBaseUseCase
+import com.chan.alarm.feature.domain.data.Alarm
+import com.chan.alarm.feature.domain.usecase.AlarmDataBaseUseCase
 import com.chan.ui.livedata.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler

@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.chan.alarm.common.ui.AlarmEvent
-import com.chan.alarm.feature.database.domain.usecase.AlarmDataBaseUseCase
+import com.chan.alarm.feature.domain.usecase.AlarmDataBaseUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
