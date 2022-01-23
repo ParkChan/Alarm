@@ -14,8 +14,8 @@ import com.chan.alarm.common.presentation.AlarmEvent
 import com.chan.alarm.common.presentation.util.TimeUtil
 import com.chan.alarm.common.presentation.util.TimeUtil.FORMAT_TYPE_HH_MM
 import com.chan.alarm.common.presentation.viewmodel.AlarmViewModel
+import com.chan.alarm.common.presentation.vo.AlarmVo
 import com.chan.alarm.databinding.FragmentAlarmBinding
-import com.chan.alarm.feature.domain.data.Alarm
 import com.chan.ui.BaseFragment
 import com.chan.ui.livedata.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +30,7 @@ class AlarmFragment : BaseFragment<FragmentAlarmBinding>(
     private val alarmViewModel by activityViewModels<AlarmViewModel>()
 
     private lateinit var ringtone: Ringtone
-    private lateinit var alarm: Alarm
+    private lateinit var alarm: AlarmVo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

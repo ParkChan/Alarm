@@ -15,6 +15,7 @@ import com.chan.alarm.common.presentation.util.TimeUtil
 import com.chan.alarm.common.presentation.util.TimeUtil.dayTimeInMillis
 import com.chan.alarm.common.presentation.util.TimeUtil.nextDayTimeInMillis
 import com.chan.alarm.common.presentation.viewmodel.AlarmViewModel
+import com.chan.alarm.common.presentation.vo.AlarmVo
 import com.chan.alarm.databinding.FragmentSettingsBinding
 import com.chan.alarm.feature.domain.data.Alarm
 import com.chan.ui.BaseFragment

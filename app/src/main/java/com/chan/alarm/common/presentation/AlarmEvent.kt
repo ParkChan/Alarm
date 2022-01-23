@@ -6,12 +6,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import com.chan.alarm.common.presentation.receiver.AlarmReceiver
+import com.chan.alarm.common.presentation.vo.AlarmVo
 import com.chan.alarm.feature.domain.data.Alarm
 import timber.log.Timber
 
 object AlarmEvent {
 
-    fun addBroadCastAlarmManager(context: Context, alarm: Alarm) {
+    fun addBroadCastAlarmManager(context: Context, alarm: AlarmVo) {
         Timber.d("addBroadCastAlarmManager alarm >>> $alarm")
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)

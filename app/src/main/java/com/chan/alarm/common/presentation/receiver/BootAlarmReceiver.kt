@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import com.chan.alarm.common.presentation.AlarmEvent
+import com.chan.alarm.common.presentation.vo.AlarmVo
 import com.chan.alarm.feature.domain.usecase.AlarmDataBaseUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -34,7 +35,10 @@ class BootAlarmReceiver : BroadcastReceiver() {
                         alarmList.forEach {
                             if (it.enable) {
                                 Timber.d(">>> BootAlarmReceiver addAlarm $it")
-                                AlarmEvent.addBroadCastAlarmManager(context, it)
+                                AlarmEvent.addBroadCastAlarmManager(
+                                    context,
+                                    AlarmVo.mapFromDomain(it)
+                                )
                             }
                         }
                     }

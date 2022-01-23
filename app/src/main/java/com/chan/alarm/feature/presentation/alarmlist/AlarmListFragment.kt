@@ -7,8 +7,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import com.chan.alarm.R
 import com.chan.alarm.common.presentation.viewmodel.AlarmViewModel
+import com.chan.alarm.common.presentation.vo.AlarmVo
 import com.chan.alarm.databinding.FragmentAlarmListBinding
-import com.chan.alarm.feature.domain.data.Alarm
 import com.chan.ui.BR
 import com.chan.ui.BaseFragment
 import com.chan.ui.adapter.BaseListAdapter
@@ -19,20 +19,20 @@ class AlarmListFragment : BaseFragment<FragmentAlarmListBinding>(
 ) {
 
     private val alarmViewModel by activityViewModels<AlarmViewModel>()
-    private val listAdapter: BaseListAdapter<Alarm> by lazy {
+    private val listAdapter: BaseListAdapter<AlarmVo> by lazy {
         BaseListAdapter(
             layoutResourceId = R.layout.rv_alarm_item,
-            viewHolderBindingId = BR.alarm,
+            viewHolderBindingId = BR.alarmVo,
             viewModel = mapOf(BR.alarmViewModel to alarmViewModel),
-            object : DiffUtil.ItemCallback<Alarm>() {
+            object : DiffUtil.ItemCallback<AlarmVo>() {
                 override fun areItemsTheSame(
-                    oldItem: Alarm,
-                    newItem: Alarm
+                    oldItem: AlarmVo,
+                    newItem: AlarmVo
                 ): Boolean =
                     oldItem.id == newItem.id
 
                 override fun areContentsTheSame(
-                    oldItem: Alarm, newItem: Alarm
+                    oldItem: AlarmVo, newItem: AlarmVo
                 ): Boolean = oldItem == newItem
             }
         )
@@ -70,7 +70,8 @@ class AlarmListFragment : BaseFragment<FragmentAlarmListBinding>(
 
     private fun initViewModelObserve() {
         alarmViewModel.alarms.observeEvent(
-            lifecycleOwner = viewLifecycleOwner, observer = {
+            lifecycleOwner = viewLifecycleOwner,
+            observer = {
                 listAdapter.submitList(it)
             })
     }

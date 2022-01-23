@@ -9,7 +9,7 @@
 
         <variable
             name="alarm"
-            type="com.chan.alarm.feature.domain.data.Alarm" />
+            type="com.chan.alarm.common.presentation.vo.AlarmVo" />
 
         <variable
             name="alarmViewModel"

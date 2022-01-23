@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chan.alarm.common.presentation.AlarmEvent
 import com.chan.alarm.common.presentation.util.TimeUtil
+import com.chan.alarm.common.presentation.vo.AlarmVo
 import com.chan.alarm.feature.domain.data.Alarm
 import com.chan.alarm.feature.domain.usecase.AlarmDataBaseUseCase
 import com.chan.ui.livedata.Event
@@ -23,11 +24,11 @@ class AlarmViewModel @Inject constructor(
     private val alarmDataBaseUseCase: AlarmDataBaseUseCase
 ) : ViewModel() {
 
-    private val _alarms = MutableLiveData<Event<List<Alarm>>>()
-    val alarms: LiveData<Event<List<Alarm>>> get() = _alarms
+    private val _alarms = MutableLiveData<Event<List<AlarmVo>>>()
+    val alarms: LiveData<Event<List<AlarmVo>>> get() = _alarms
 
-    private val _displayAlarm = MutableLiveData<Event<Alarm>>()
-    val displayAlarm: LiveData<Event<Alarm>> get() = _displayAlarm
+    private val _displayAlarm = MutableLiveData<Event<AlarmVo>>()
+    val displayAlarm: LiveData<Event<AlarmVo>> get() = _displayAlarm
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
         Timber.e(exception.message)
@@ -39,35 +40,41 @@ class AlarmViewModel @Inject constructor(
 
     fun selectAlarmList() = viewModelScope.launch(coroutineExceptionHandler) {
         alarmDataBaseUseCase.select()
-            .onSuccess {
-                _alarms.value = Event(it)
+            .onSuccess { alarms ->
+                _alarms.value = Event(alarms.map { alarm -> AlarmVo.mapFromDomain(alarm) })
             }.onFailure {
                 Timber.e(it.message)
             }
     }
 
-    private fun updateAlarm(alarm: Alarm) =
+    private fun updateAlarm(alarm: AlarmVo) =
         viewModelScope.launch(coroutineExceptionHandler) {
-            alarmDataBaseUseCase.update(alarm)
+            alarmDataBaseUseCase.update(alarm.mapToDomain())
         }
 
-    suspend fun selectAlarmId(alarmId: Int) =
+    fun selectAlarmId(alarmId: Int) =
         viewModelScope.launch(coroutineExceptionHandler) {
             _displayAlarm.value =
                 Event(
-                    alarmDataBaseUseCase.selectId(alarmId).getOrNull() ?: Alarm()
+                    AlarmVo.mapFromDomain(
+                        alarmDataBaseUseCase.selectId(alarmId).getOrNull() ?: Alarm()
+                    )
                 )
         }
 
-    suspend fun selectAlarmName(alarmName: String): Alarm = withContext(
+    suspend fun selectAlarmName(alarmName: String): AlarmVo = withContext(
         viewModelScope.coroutineContext
     ) {
-        alarmDataBaseUseCase.selectAlarmName(alarmName).getOrNull() ?: Alarm()
+        AlarmVo.mapFromDomain(
+            alarmDataBaseUseCase.selectAlarmName(alarmName).getOrNull() ?: Alarm()
+        )
     }
 
-    suspend fun offAlarm(alarm: Alarm) =
+    suspend fun offAlarm(alarm: AlarmVo) =
         viewModelScope.launch(coroutineExceptionHandler) {
-            alarmDataBaseUseCase.update(alarm.apply { enable = false })
+            alarmDataBaseUseCase.update(
+                alarm.apply { enable = false }.mapToDomain()
+            )
         }
 
     suspend fun addAlarm(alarm: Alarm) = viewModelScope.launch(coroutineExceptionHandler) {
@@ -78,7 +85,7 @@ class AlarmViewModel @Inject constructor(
         alarmDataBaseUseCase.delete(id)
     }
 
-    fun onClickCheckBox(context: Context, isChecked: Boolean, alarm: Alarm) =
+    fun onClickCheckBox(context: Context, isChecked: Boolean, alarm: AlarmVo) =
         viewModelScope.launch(coroutineExceptionHandler) {
             Timber.d(">>> onClickCheckBox alarm $alarm")
             val alarmData = alarm.apply {
