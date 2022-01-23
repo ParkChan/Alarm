@@ -27,7 +27,7 @@
         </activity>
 
         <receiver
-            android:name="com.chan.alarm.common.ui.receiver.AlarmReceiver"
+            android:name="com.chan.alarm.common.presentation.receiver.AlarmReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -36,7 +36,7 @@
         </receiver>
 
         <receiver
-            android:name="com.chan.alarm.common.ui.receiver.BootAlarmReceiver"
+            android:name="com.chan.alarm.common.presentation.receiver.BootAlarmReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

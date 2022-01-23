@@ -1,6 +1,6 @@
-package com.chan.alarm.common.ui
+package com.chan.alarm.common.presentation
 
-import com.chan.alarm.common.ui.viewmodel.AlarmViewModel
+import com.chan.alarm.common.presentation.viewmodel.AlarmViewModel
 import com.chan.alarm.feature.domain.data.Alarm
 import com.chan.alarm.feature.domain.usecase.AlarmDataBaseUseCase
 import com.chan.alarm.util.CoroutinesTestExtension

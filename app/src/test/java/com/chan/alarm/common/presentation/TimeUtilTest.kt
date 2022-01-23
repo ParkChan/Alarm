@@ -1,7 +1,7 @@
-package com.chan.alarm.common.ui
+package com.chan.alarm.common.presentation
 
-import com.chan.alarm.common.ui.util.TimeUtil
-import com.chan.alarm.common.ui.util.TimeUtil.FORMAT_TYPE_HH_MM_AA
+import com.chan.alarm.common.presentation.util.TimeUtil
+import com.chan.alarm.common.presentation.util.TimeUtil.FORMAT_TYPE_HH_MM_AA
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 

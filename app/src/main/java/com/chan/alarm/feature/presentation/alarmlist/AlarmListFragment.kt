@@ -6,7 +6,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import com.chan.alarm.R
-import com.chan.alarm.common.ui.viewmodel.AlarmViewModel
+import com.chan.alarm.common.presentation.viewmodel.AlarmViewModel
 import com.chan.alarm.databinding.FragmentAlarmListBinding
 import com.chan.alarm.feature.domain.data.Alarm
 import com.chan.ui.BR

@@ -10,10 +10,10 @@ import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import com.chan.alarm.common.ui.AlarmEvent
-import com.chan.alarm.common.ui.util.TimeUtil
-import com.chan.alarm.common.ui.util.TimeUtil.FORMAT_TYPE_HH_MM
-import com.chan.alarm.common.ui.viewmodel.AlarmViewModel
+import com.chan.alarm.common.presentation.AlarmEvent
+import com.chan.alarm.common.presentation.util.TimeUtil
+import com.chan.alarm.common.presentation.util.TimeUtil.FORMAT_TYPE_HH_MM
+import com.chan.alarm.common.presentation.viewmodel.AlarmViewModel
 import com.chan.alarm.databinding.FragmentAlarmBinding
 import com.chan.alarm.feature.domain.data.Alarm
 import com.chan.ui.BaseFragment

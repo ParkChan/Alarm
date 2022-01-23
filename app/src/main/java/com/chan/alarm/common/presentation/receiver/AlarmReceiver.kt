@@ -1,4 +1,4 @@
-package com.chan.alarm.common.ui.receiver
+package com.chan.alarm.common.presentation.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context

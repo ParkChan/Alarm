@@ -11,7 +11,7 @@ import android.provider.Settings
 import android.view.WindowManager
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.chan.alarm.common.ui.util.SnackbarUtil
+import com.chan.alarm.common.presentation.util.SnackbarUtil
 import com.chan.alarm.databinding.ActivityMainBinding
 import com.chan.ui.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint

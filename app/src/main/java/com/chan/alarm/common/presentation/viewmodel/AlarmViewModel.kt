@@ -1,12 +1,12 @@
-package com.chan.alarm.common.ui.viewmodel
+package com.chan.alarm.common.presentation.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.chan.alarm.common.ui.AlarmEvent
-import com.chan.alarm.common.ui.util.TimeUtil
+import com.chan.alarm.common.presentation.AlarmEvent
+import com.chan.alarm.common.presentation.util.TimeUtil
 import com.chan.alarm.feature.domain.data.Alarm
 import com.chan.alarm.feature.domain.usecase.AlarmDataBaseUseCase
 import com.chan.ui.livedata.Event
