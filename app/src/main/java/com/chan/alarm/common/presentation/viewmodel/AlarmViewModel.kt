@@ -73,12 +73,12 @@ class AlarmViewModel @Inject constructor(
     suspend fun offAlarm(alarm: AlarmVo) =
         viewModelScope.launch(coroutineExceptionHandler) {
             alarmDataBaseUseCase.update(
-                alarm.apply { enable = false }.mapToDomain()
+                alarm.copy(enable = false).mapToDomain()
             )
         }
 
-    suspend fun addAlarm(alarm: Alarm) = viewModelScope.launch(coroutineExceptionHandler) {
-        alarmDataBaseUseCase.insert(alarm)
+    suspend fun addAlarm(alarm: AlarmVo) = viewModelScope.launch(coroutineExceptionHandler) {
+        alarmDataBaseUseCase.insert(alarm.mapToDomain())
     }
 
     fun deleteAlarm(id: Int) = viewModelScope.launch(coroutineExceptionHandler) {
@@ -88,8 +88,9 @@ class AlarmViewModel @Inject constructor(
     fun onClickCheckBox(context: Context, isChecked: Boolean, alarm: AlarmVo) =
         viewModelScope.launch(coroutineExceptionHandler) {
             Timber.d(">>> onClickCheckBox alarm $alarm")
-            val alarmData = alarm.apply {
-                enable = isChecked
+            val timeStamp = alarm.timeStamp
+            val resultAlarm = alarm.copy(
+                enable = isChecked,
                 timeStamp = if (isChecked) {
                     if (TimeUtil.isBeforeTimeInMillis(
                             Calendar.getInstance().timeInMillis,
@@ -103,13 +104,13 @@ class AlarmViewModel @Inject constructor(
                 } else {
                     timeStamp
                 }
-            }
-            updateAlarm(alarmData)
+            )
+            updateAlarm(resultAlarm)
 
             if (isChecked) {
-                AlarmEvent.addBroadCastAlarmManager(context, alarmData)
+                AlarmEvent.addBroadCastAlarmManager(context, resultAlarm)
             } else {
-                AlarmEvent.cancelBroadCastAlarmManager(context, alarmData.id)
+                AlarmEvent.cancelBroadCastAlarmManager(context, resultAlarm.id)
             }
         }
 

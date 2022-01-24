@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
+import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -17,7 +18,6 @@ import com.chan.alarm.common.presentation.util.TimeUtil.nextDayTimeInMillis
 import com.chan.alarm.common.presentation.viewmodel.AlarmViewModel
 import com.chan.alarm.common.presentation.vo.AlarmVo
 import com.chan.alarm.databinding.FragmentSettingsBinding
-import com.chan.alarm.feature.domain.data.Alarm
 import com.chan.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -30,18 +30,19 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
     FragmentSettingsBinding::inflate
 ) {
     private val alarmViewModel by activityViewModels<AlarmViewModel>()
+    private var ringTonUri: Uri = "".toUri()
     private val resultLauncher: ActivityResultLauncher<Uri?> = registerForActivityResult(
         RingtoneActivityContract()
     ) {
         it?.let {
             binding.tvRingtoneSubName.text = getRingtoneTitle(it)
-            alarmVo.ringtoneUri = it.toString()
+            ringTonUri = it
         }
     }
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
         Timber.e(exception.message)
     }
-    private val alarmVo = AlarmVo()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,7 +79,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
 
                     val dayTimeInMillis = dayTimeInMillis(hour, minute)
 
-                    val alarm = Alarm(
+                    val alarmVo = AlarmVo(
                         name = remindName,
                         timeStamp = if (
                             TimeUtil.isBeforeTimeInMillis(
@@ -91,10 +92,10 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
                             dayTimeInMillis
                         },
                         enable = true,
-                        ringtoneUri = alarmVo.ringtoneUri
+                        ringtoneUri = ringTonUri.toString()
                     )
-                    alarmViewModel.addAlarm(alarm)
-                    val selectedAlarm = alarmViewModel.selectAlarmName(alarm.name)
+                    alarmViewModel.addAlarm(alarmVo)
+                    val selectedAlarm = alarmViewModel.selectAlarmName(alarmVo.name)
                     Timber.d(">>> selectedAlarm $selectedAlarm")
                     AlarmEvent.addBroadCastAlarmManager(
                         binding.btnSave.context,
@@ -105,7 +106,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
             }
         }
         binding.viewBgRingtone.setOnClickListener {
-            resultLauncher.launch(alarmVo.getUri())
+            resultLauncher.launch(ringTonUri)
         }
     }
 
@@ -118,7 +119,7 @@ class SettingFragment : BaseFragment<FragmentSettingsBinding>(
                 SnackbarUtil.show(binding.root, getString(R.string.snack_bar_msg_input_remind_name))
                 false
             }
-            alarmVo.ringtoneUri.isEmpty() -> {
+            ringTonUri == Uri.EMPTY -> {
                 SnackbarUtil.show(binding.root, getString(R.string.snack_bar_msg_select_ringtone))
                 false
             }
