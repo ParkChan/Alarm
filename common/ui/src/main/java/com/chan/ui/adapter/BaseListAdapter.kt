@@ -10,7 +10,7 @@ class BaseListAdapter<ITEM : Any>(
     @LayoutRes private val layoutResourceId: Int,
     private val viewHolderBindingId: Int,
     private val viewModel: Map<Int, ViewModel>,
-    private val diffUtil: DiffUtil.ItemCallback<ITEM>
+    diffUtil: DiffUtil.ItemCallback<ITEM>
 ) : ListAdapter<ITEM, BaseViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder =

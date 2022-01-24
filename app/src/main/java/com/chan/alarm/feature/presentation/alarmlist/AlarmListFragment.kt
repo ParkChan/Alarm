@@ -24,7 +24,7 @@ class AlarmListFragment : BaseFragment<FragmentAlarmListBinding>(
             layoutResourceId = R.layout.rv_alarm_item,
             viewHolderBindingId = BR.alarmVo,
             viewModel = mapOf(BR.alarmViewModel to alarmViewModel),
-            object : DiffUtil.ItemCallback<AlarmVo>() {
+            diffUtil = object : DiffUtil.ItemCallback<AlarmVo>() {
                 override fun areItemsTheSame(
                     oldItem: AlarmVo,
                     newItem: AlarmVo

@@ -8,7 +8,7 @@
         <import type="android.content.Context" />
 
         <variable
-            name="alarm"
+            name="alarmVo"
             type="com.chan.alarm.common.presentation.vo.AlarmVo" />
 
         <variable
@@ -21,7 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp">
+        android:layout_marginBottom="2dp"
+        >
 
         <View
             android:id="@+id/view_bg"
@@ -45,7 +46,7 @@
 
         <TextView
             android:id="@+id/tv_time"
-            setTime="@{alarm}"
+            setTime="@{alarmVo}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/common_margin"
@@ -62,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/common_margin"
-            android:text="@{alarm.name}"
+            android:text="@{alarmVo.name}"
             android:textColor="@color/text_remind_hint_color"
             android:textSize="@dimen/common_text_size"
             android:ellipsize="end"
@@ -79,8 +80,8 @@
             android:layout_marginStart="@dimen/common_margin"
             android:layout_marginEnd="@dimen/common_margin"
             android:button="@drawable/selector_check_box_alarm"
-            android:checked="@{alarm.enable}"
-            android:onClick="@{() -> alarmViewModel.onClickCheckBox(context, cbAlarm.isChecked(), alarm) }"
+            android:checked="@{alarmVo.enable}"
+            android:onClick="@{() -> alarmViewModel.onClickCheckBox(context, cbAlarm.isChecked(), alarmVo) }"
             app:layout_constraintBottom_toBottomOf="@id/view_bg"
             app:layout_constraintEnd_toEndOf="@id/view_bg"
             app:layout_constraintTop_toTopOf="@id/view_bg" />
