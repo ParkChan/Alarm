@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_alarm_list"
-        android:name="com.chan.alarm.feature.presentation.alarmlist.AlarmListFragment"
+        android:name="com.chan.alarm.feature.presentation.alarm.fragment.AlarmListFragment"
         android:label="@string/fragment_label_alarm_list"
         tools:layout="@layout/fragment_alarm_list">
         <action
@@ -18,9 +18,9 @@
 
     <fragment
         android:id="@+id/fragment_settings"
-        android:name="com.chan.alarm.feature.presentation.settings.SettingFragment"
+        android:name="com.chan.alarm.feature.presentation.alarm.fragment.SettingAlarmFragment"
         android:label="@string/fragment_label_remind_settings"
-        tools:layout="@layout/fragment_settings">
+        tools:layout="@layout/fragment_setting_alarm">
         <action
             android:id="@+id/action_settings_fragment_to_alarm_list_fragment_graph"
             app:destination="@id/fragment_alarm_list" />
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/fragment_alarm"
-        android:name="com.chan.alarm.feature.presentation.alarm.AlarmFragment"
+        android:name="com.chan.alarm.feature.presentation.alarm.fragment.AlarmFragment"
         android:label="@string/fragment_label_alarm"
         tools:layout="@layout/fragment_alarm">
         <action

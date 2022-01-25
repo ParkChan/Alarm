@@ -1,4 +1,4 @@
-package com.chan.alarm.feature.presentation.alarmlist
+package com.chan.alarm.feature.presentation.alarm.fragment
 
 import android.os.Bundle
 import android.view.View

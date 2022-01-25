@@ -1,4 +1,4 @@
-package com.chan.alarm.feature.presentation.settings
+package com.chan.alarm.feature.presentation.alarm.fragment
 
 import android.media.RingtoneManager
 import android.net.Uri
@@ -17,7 +17,8 @@ import com.chan.alarm.common.presentation.util.TimeUtil.dayTimeInMillis
 import com.chan.alarm.common.presentation.util.TimeUtil.nextDayTimeInMillis
 import com.chan.alarm.common.presentation.viewmodel.AlarmViewModel
 import com.chan.alarm.common.presentation.vo.AlarmVo
-import com.chan.alarm.databinding.FragmentSettingsBinding
+import com.chan.alarm.databinding.FragmentSettingAlarmBinding
+import com.chan.alarm.feature.presentation.alarm.RingtoneActivityContract
 import com.chan.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -26,8 +27,8 @@ import timber.log.Timber
 import java.util.Calendar
 
 @AndroidEntryPoint
-class SettingFragment : BaseFragment<FragmentSettingsBinding>(
-    FragmentSettingsBinding::inflate
+class SettingAlarmFragment : BaseFragment<FragmentSettingAlarmBinding>(
+    FragmentSettingAlarmBinding::inflate
 ) {
     private val alarmViewModel by activityViewModels<AlarmViewModel>()
     private var ringTonUri: Uri = "".toUri()

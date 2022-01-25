@@ -1,4 +1,4 @@
-package com.chan.alarm.feature.presentation.settings
+package com.chan.alarm.feature.presentation.alarm
 
 import android.app.Activity
 import android.content.Context

@@ -1,4 +1,4 @@
-package com.chan.alarm.feature.presentation.alarmlist.ext
+package com.chan.alarm.feature.presentation.ext
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
