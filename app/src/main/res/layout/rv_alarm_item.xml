@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/common_margin"
             android:layout_marginEnd="@dimen/common_margin"
-            android:button="@drawable/selector_check_box_alarm"
+            android:button="@drawable/selector_toggle_alarm"
             android:checked="@{alarmVo.enable}"
             android:onClick="@{() -> alarmViewModel.onClickCheckBox(context, cbAlarm.isChecked(), alarmVo) }"
             app:layout_constraintBottom_toBottomOf="@id/view_bg"
