@@ -3,6 +3,6 @@
 
     <item android:state_checked="true" android:drawable="@drawable/layer_ic_toggle_on_white"/>
 
-    <item android:state_checked="false" android:drawable="@drawable/toggle_off_white"/>
+    <item android:state_checked="false" android:drawable="@drawable/layer_ic_toggle_off_white"/>
 
 </selector>
